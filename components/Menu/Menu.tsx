@@ -2,10 +2,7 @@ import React, { FC, useState } from "react";
 import Link from "next/link";
 import { isMobile } from "react-device-detect";
 import { legal, links, social } from "data/menu";
-import styles from "styles/Menu.module.css";
-
-// @ts-ignore
-import Burger from "@animated-burgers/burger-squeeze";
+import styles from "styles/modules/Menu.module.css";
 
 interface MenuProps {}
 

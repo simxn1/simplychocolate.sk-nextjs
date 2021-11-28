@@ -1,0 +1,11 @@
+.section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    position: relative;
+}

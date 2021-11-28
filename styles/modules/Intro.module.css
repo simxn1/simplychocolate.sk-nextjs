@@ -1,0 +1,182 @@
+.carousel {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    position: relative;
+}
+
+.heading {
+    color: #fff;
+    margin: 0;
+    font-family: 'Social Gothic Demi-Bold', sans-serif;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+@keyframes down {
+    0%,
+    100% {
+        transform: translate(-50%, 0);
+    }
+
+    50% {
+        transform: translate(-50%, -10px);
+    }
+}
+
+.arrowDown {
+    left: 12%;
+    bottom: 12%;
+    animation: down 1s ease-in-out infinite;
+    position: absolute;
+    color: #fff;
+    right: 5%;
+    z-index: 2;
+    font-size: 2em;
+}
+
+.carousel .first {
+    background-image: url("/img/intro/mobile/1.webp");
+    background-position: bottom;
+    color: #fff !important;
+}
+
+.carousel .second {
+    background-image: url("/img/intro/mobile/2.webp");
+    background-position: bottom center;
+}
+
+.carousel .section:first-child .heading {
+    position: relative;
+    line-height: 44px;
+    font-size: 40px;
+    top: 55%;
+    left: 8%;
+}
+
+.descHeading {
+    position: relative;
+    top: 4%;
+    left: 15%;
+    font-size: 3em;
+    color: #000 !important;
+}
+
+.descLogo {
+    width: 40% !important;
+    top: 1%;
+    left: -20%;
+    margin-top: 8%;
+    position: relative;
+}
+
+.descText {
+    position: relative;
+    top: 4%;
+    font-size: 1.075em;
+}
+
+.descText p {
+    font-family: 'Cormonant Garamond Medium', serif;
+    margin: 0 auto;
+    width: 80%;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.icons {
+    width: 50% !important;
+    position: absolute;
+    bottom: 6.5%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.logoVertical {
+    height: 28.5%;
+    width: 9% !important;
+    position: absolute;
+    top: 57%;
+    right: 3%;
+}
+
+
+/*
+   WIDTH QUERIES
+*/
+@media (max-width: 420px) {
+    .icons {
+        bottom: 23.5%;
+    }
+}
+
+
+/*
+    HEIGHT QUERIES
+*/
+@media (max-height: 800px) {
+    .descText {
+        font-size: 0.95em;
+    }
+}
+
+@media (max-height: 725px) {
+    .descText {
+        font-size: 0.885em;
+    }
+}
+
+@media (max-height: 700px) {
+    .icons {
+        bottom: 24%;
+    }
+}
+
+@media (max-height: 660px) {
+    .descLogo {
+        width: 27% !important;
+        top: 11%;
+    }
+
+    .descText p {
+            font-size: 0.75em;
+    }
+
+    .icons {
+        bottom: 19.5%;
+    }
+}
+
+@media (max-height: 610px) {
+    .descLogo {
+        top: 10%;
+    }
+}
+
+@media (max-height: 600px) {
+    .descText p {
+        font-size: 0.65em;
+    }
+
+    .icons {
+        bottom: 18%;
+    }
+}
+
+@media (max-height: 590px) {
+    .descLogo {
+        top: 10.75%;
+    }
+}

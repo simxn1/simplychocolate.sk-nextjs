@@ -1,0 +1,70 @@
+.slideSelectors {
+    position: absolute;
+    top: 80vh;
+    left: 50%;
+    transform: translateX(-45%);
+}
+
+.slide:nth-child(3) .section .slideSelectors {
+    position: absolute;
+    bottom: 17%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.slide:nth-child(3) .section .slideSelectors button i {
+    position: relative;
+    top: 9%;
+    color: #000;
+}
+
+.slideSelectors button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-weight: 300;
+    font-size: 2em;
+}
+
+.slideSelectors button:first-child {
+    animation: left 1s ease-in-out infinite;
+    -webkit-animation: left 1s ease-in-out infinite;
+    -moz-animation: left 1s ease-in-out infinite;
+}
+
+.slideSelectors button:last-child {
+    animation: right 1s ease-in-out infinite;
+    -webkit-animation: right 1s ease-in-out infinite;
+    -moz-animation: right 1s ease-in-out infinite;
+}
+
+.slideSelectors button:hover {
+    cursor: pointer;
+}
+
+.slideSelectors button:focus {
+    border: none;
+    outline: none;
+}
+
+@keyframes right {
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(10px, 0);
+    }
+}
+
+@keyframes left {
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(-10px, 0);
+    }
+}
