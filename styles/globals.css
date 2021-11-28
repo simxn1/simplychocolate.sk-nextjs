@@ -14,3 +14,39 @@ a {
 * {
   box-sizing: border-box;
 }
+
+
+@font-face {
+  font-family: 'Social Gothic Demi-Bold';
+  src: url('/fonts/SocialGothicDemiBold.otf');
+}
+
+@font-face {
+  font-family: 'Social Gothic Bold';
+  src: url('/fonts/SocialGothicBold.otf');
+}
+
+@font-face {
+  font-family: 'Cormonant Garamond Light';
+  src: url('/fonts/CormorantGaramond-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Cormonant Garamond Medium';
+  src: url('/fonts/CormorantGaramond-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Cormonant Garamond Bold';
+  src: url('/fonts/CormorantGaramond-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('/fonts/OpenSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Open Sans Bold';
+  src: url("/fonts/OpenSans-Bold.ttf");
+}
