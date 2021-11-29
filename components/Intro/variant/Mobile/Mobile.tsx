@@ -2,18 +2,20 @@ import React, { FC, ReactNode, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import Typical from "react-typical";
 import { description } from "data/intro";
-import styles from "styles/modules/Intro.module.css";
+import styles from "styles/modules/Intro/IntroMobile.module.css";
 import { Section } from "./Section";
 
-interface Props {}
-
-const sections: { className: string; children: ReactNode }[] = [
+const sections: {
+  className: string;
+  children: ReactNode;
+  selectorsColor?: string;
+}[] = [
   {
     className: styles.first,
     children: (
       <>
         <i className={"fas fa-arrow-down " + styles.arrowDown} />
-        <h1 className={styles.heading}>
+        <h1 className={"heading " + styles.heading}>
           yes
           <br />
           you can
@@ -22,7 +24,7 @@ const sections: { className: string; children: ReactNode }[] = [
           steps={["", 1400, "BUY LOVE", 1200]}
           loop={Infinity}
           wrapper="h1"
-          className={styles.heading}
+          className="heading"
         />
       </>
     ),
@@ -32,7 +34,7 @@ const sections: { className: string; children: ReactNode }[] = [
     className: "",
     children: (
       <>
-        <h1 className={styles.heading + " " + styles.descHeading}>o nás</h1>
+        <h1 className={"heading " + styles.descHeading}>o nás</h1>
         <img
           className={styles.descLogo}
           src="/img/intro/mobile/logo-black-nobreak.webp"
@@ -55,6 +57,7 @@ const sections: { className: string; children: ReactNode }[] = [
         />
       </>
     ),
+    selectorsColor: "#000",
   },
   { className: styles.forth, children: null },
   {
@@ -69,6 +72,8 @@ const sections: { className: string; children: ReactNode }[] = [
   },
 ];
 
+interface Props {}
+
 export const Mobile: FC<Props> = ({}: Props) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
 
@@ -82,15 +87,16 @@ export const Mobile: FC<Props> = ({}: Props) => {
       selectedItem={currentSlide}
       className={styles.carousel}
     >
-      {sections.map((section) => {
+      {sections.map(({ children, className, selectorsColor }) => {
         return (
           <Section
             currentSlide={currentSlide}
             setCurrentSlide={setCurrentSlide}
-            className={section.className}
-            key={section.className}
+            className={className}
+            selectorsColor={selectorsColor}
+            key={className}
           >
-            {section.children}
+            {children}
           </Section>
         );
       })}
