@@ -1,0 +1,67 @@
+.whereToFindUs {
+    background-image: url("/img/where-to-find-us/desktop/in-products-background.webp");
+    background-size: cover;
+}
+
+.whereToFindUs h1 {
+    font-family: "Social Gothic Demi-Bold", sans-serif;
+    font-size: 6em;
+    line-height: 1.1em;
+    position: relative;
+    top: 10vh;
+    left: 13vw;
+}
+
+.whereToFindUs h2 {
+    font-family: 'Social Gothic Demi-Bold', sans-serif;
+    line-height: 1.2em;
+    font-size: 3.5em;
+    position: absolute;
+    top: 10%;
+    right: 14%;
+    text-align: right;
+}
+
+.logoImgList {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 18%;
+    left: 72%;
+}
+
+.logoImgList img {
+    width: 15%;
+}
+
+.barImgList {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+}
+
+.barImgList img {
+    max-width: 100%;
+    margin-left: -2%;
+    width: 30%;
+}
+
+@media (max-width: 1800px) {
+    .barImgList img {
+        width: 27%;
+        height: 19%;
+    }
+}
+
+@media (max-width: 1600px) {
+    .barImgList img {
+        width: 25%;
+    }
+}
+
+@media (max-width: 1430px), (max-height: 650px) {
+    .whereToFindUs h1 {
+        font-size: 5.25em;
+    }
+}
