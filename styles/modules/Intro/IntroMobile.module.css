@@ -5,26 +5,6 @@
     overflow-x: hidden;
 }
 
-.section {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-    width: 100vw;
-    height: 100vh;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    background-size: cover !important;
-    background-repeat: no-repeat !important;
-    position: relative;
-}
-
-.heading {
-    color: #fff;
-    margin: 0;
-    font-family: 'Social Gothic Demi-Bold', sans-serif;
-    text-transform: uppercase;
-    text-align: left;
-}
-
 @keyframes down {
     0%,
     100% {
@@ -119,7 +99,6 @@
     top: 57%;
     right: 2%;
 }
-
 
 /*
    WIDTH QUERIES

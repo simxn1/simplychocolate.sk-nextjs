@@ -9,3 +9,31 @@
     background-repeat: no-repeat !important;
     position: relative;
 }
+
+.heading {
+    color: #fff;
+    margin: 0;
+    font-family: 'Social Gothic Demi-Bold', sans-serif;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+/*
+    react-compare-image customization
+*/
+div[data-testid="container"] {
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+div[data-testid="container"] div:nth-of-type(2) div {
+    background-color: transparent !important;
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
+}
+
+div[data-testid="container"] div:nth-of-type(3) div {
+    opacity: 1 !important;
+    text-align: left;
+    background-color: transparent !important;
+}

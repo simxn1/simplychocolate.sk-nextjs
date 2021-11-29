@@ -1,0 +1,288 @@
+.left .heading {
+    background-color: transparent !important;
+    font-family: "Social Gothic Demi-Bold", sans-serif;
+    font-size: 5.5em;
+    line-height: 1.1em;
+    position: relative;
+    bottom: 35vh;
+    left: 2.5vw;
+}
+
+.right {
+    text-align: left;
+    position: relative;
+    right: 47vw;
+    top: -5vh;
+    color: #000;
+}
+
+.right .heading {
+    font-size: 5em;
+    font-family: 'Social Gothic Bold', sans-serif;
+    margin-bottom: 0;
+    left: 0;
+    color: #000;
+}
+
+.icons {
+    width: 50% !important;
+    height: 25% !important;
+}
+
+.logo {
+    width: 15.7em !important;
+    height: 2.72em !important;
+    margin-left: -3%;
+}
+
+.description {
+    font-family: 'Cormonant Garamond Medium', serif;
+    font-size: 1.4em;
+    width: 58ch;
+    margin-bottom: 3vh;
+}
+
+@keyframes right-arrow {
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(10px, 0);
+    }
+}
+
+@keyframes left-arrow {
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(-10px, 0);
+    }
+}
+
+.handle {
+    color: white;
+    position: relative;
+    top: 12em;
+    font-size: 1.75em;
+}
+
+.handle i {
+    position: absolute;
+}
+
+.handle i:first-child {
+    right: 0.5rem;
+    animation: left-arrow 1s ease-in-out infinite;
+    -webkit-animation: left-arrow 1s ease-in-out infinite;
+    -moz-animation: left-arrow 1s ease-in-out infinite;
+}
+
+.handle i:last-child {
+    left: 0.5rem;
+    animation: right-arrow 1s ease-in-out infinite;
+    -webkit-animation: right-arrow 1s ease-in-out infinite;
+    -moz-animation: right-arrow 1s ease-in-out infinite;
+}
+
+
+@media (max-height: 900px) {
+    .left .icons {
+        position: relative;
+        bottom: 2vh;
+    }
+
+    .right .icons {
+        top: 5.5vh;
+    }
+}
+
+@media (max-height: 850px) {
+    .right .icons {
+        top: 6.5vh;
+    }
+}
+
+@media (max-height: 750px) {
+    .right .icons {
+        top: 5vh;
+    }
+}
+
+@media (max-width: 1450px) {
+    .right {
+            right: 32vw;
+    }
+
+    .left .icons {
+        position: relative;
+        bottom: 1.5em;
+    }
+
+    .right .textContainer {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 1400px), (max-height: 750px) {
+    .left .heading {
+        font-size: 4.2em;
+    }
+
+    .left .icons {
+        top: 1.75em;
+    }
+}
+
+@media (max-width: 1375px) {
+    .right {
+        right: 30vw;
+    }
+}
+
+@media (max-width: 1330px), (max-height: 820px) {
+    .left .icons {
+        top: -0.75em;
+    }
+
+    .icons {
+        width: 42% !important;
+        height: 21% !important;
+    }
+
+    .right {
+        right: 28.5vw;
+    }
+
+    .right .textContainer {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 1275px) {
+    .right {
+        right: 24.5vw;
+    }
+}
+
+@media (max-width: 1225px) {
+    .right {
+        right: 21.75vw;
+    }
+}
+
+@media (max-width: 1175px) {
+    .right {
+        right: 19.5vw;
+    }
+}
+
+@media (max-width: 1125px) {
+    .description {
+        width: 50ch;
+    }
+
+    .right {
+        right: 14.5vw;
+        top: 1vh;
+    }
+
+    .right {
+        right: 14.5vw;
+        top: 1vh;
+    }
+
+    .right .icons {
+        top: -4vh;
+    }
+}
+
+@media (max-width: 1075px) {
+    .right {
+        right: 12vw;
+    }
+}
+
+@media (max-width: 1025px) {
+    .right {
+        right: 7.5vw;
+    }
+
+    .description {
+        width: 45ch;
+    }
+
+    .right .icons {
+        top: -8vh;
+    }
+}
+
+@media (max-width: 1000px), (max-height: 700px) {
+    .icons {
+        width: 36% !important;
+        height: 18% !important;
+    }
+
+    .left .icons {
+        top: -2.4em;
+    }
+
+    .right .textContainer {
+        font-size: 0.7em;
+    }
+
+    .right .icons {
+        top: -5vh;
+    }
+}
+
+@media (max-width: 1000px), (max-height: 500px) {
+    .right {
+        right: 5vw;
+    }
+}
+
+@media (max-width: 950px), (max-height: 590px) {
+    .left .heading {
+        font-size: 3em;
+    }
+
+    .left .icons {
+        top: -0.25em;
+    }
+
+    .right {
+        right: 0;
+        top: -1vh;
+    }
+
+    .right .textContainer {
+        font-size: 0.65em;
+    }
+}
+
+@media (max-width: 900px), (max-height: 550px) {
+    .right {
+        right: -3vw;
+        top: 2vh;
+    }
+
+    .right {
+        right: -3vw;
+        top: 2vh;
+    }
+
+    .right .textContainer {
+        font-size: 0.55em;
+    }
+}
+
+@media (max-width: 850px), (max-height: 500px) {
+    .left .heading {
+        font-size: 2.5em;
+    }
+}
