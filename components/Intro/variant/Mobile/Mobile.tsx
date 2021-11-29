@@ -24,7 +24,7 @@ const sections: {
           steps={["", 1400, "BUY LOVE", 1200]}
           loop={Infinity}
           wrapper="h1"
-          className="heading"
+          className={"heading " + styles.heading}
         />
       </>
     ),
