@@ -53,17 +53,25 @@
     color: #fff !important;
 }
 
-.carousel .second {
-    background-image: url("/img/intro/mobile/2.webp");
-    background-position: bottom center;
-}
-
-.carousel .section:first-child .heading {
+.carousel .first .heading {
     position: relative;
     line-height: 44px;
     font-size: 40px;
     top: 55%;
     left: 8%;
+}
+
+.carousel .second {
+    background-image: url("/img/intro/mobile/2.webp");
+    background-position: bottom center;
+}
+
+.carousel .forth {
+    background-image: url("/img/intro/mobile/4.webp");
+}
+
+.carousel .fifth {
+    background-image: url("/img/intro/mobile/5.webp");
 }
 
 .descHeading {
@@ -109,7 +117,7 @@
     width: 9% !important;
     position: absolute;
     top: 57%;
-    right: 3%;
+    right: 2%;
 }
 
 
