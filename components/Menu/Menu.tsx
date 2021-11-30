@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import Link from "next/link";
-import { isMobile } from "react-device-detect";
+import { isMobileOnly } from "react-device-detect";
 import { legal, links, social } from "data/menu";
 import styles from "styles/modules/Menu.module.css";
 
@@ -26,7 +26,7 @@ export const Menu: FC<MenuProps> = ({}: MenuProps) => {
           <span className="hamburger-inner" />
         </span>
       </button>
-      {!isMobile && (
+      {!isMobileOnly && (
         <div className={styles.social}>
           {social.map((link) => {
             return (
