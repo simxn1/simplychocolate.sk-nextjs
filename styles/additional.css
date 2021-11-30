@@ -37,3 +37,17 @@ div[data-testid="container"] div:nth-of-type(3) div {
     text-align: left;
     background-color: transparent !important;
 }
+
+
+/*
+    carousel customization
+*/
+.carousel .control-dots .dot {
+    opacity: .2;
+    box-shadow: none;
+    background: #fff;
+    width: 1em;
+    height: 1em;
+    margin: 0 0.2em;
+    outline: none;
+}

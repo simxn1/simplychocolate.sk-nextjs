@@ -1,0 +1,51 @@
+.carousel .section {
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel .section .icon {
+    width: 8rem;
+    height: 8rem;
+    margin-bottom: 1rem;
+}
+
+.carousel .section .heading {
+    font-size: 42px;
+    text-align: center;
+}
+
+.carousel .section .heading::after {
+    content: "";
+    background-color: #fff;
+    position: relative;
+    display: block;
+    border-bottom: 4px solid #fff;
+    margin: 0.5em auto 0;
+    width: 3.4em;
+}
+
+.carousel .section .desc {
+    font-size: 30px;
+    font-family: 'Cormonant Garamond Medium', serif;
+    width: 32ch;
+}
+
+@media (max-width: 600px) {
+    .carousel .section .icon {
+        width: 6rem;
+        height: 6rem;
+        margin-bottom: 1rem;
+    }
+
+    .carousel .section .heading {
+        font-size: 32px;
+    }
+
+    .carousel .section .desc {
+        font-size: 24px;
+        width: 80%;
+    }
+}
