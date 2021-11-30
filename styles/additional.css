@@ -29,7 +29,7 @@ div[data-testid="container"] {
 div[data-testid="container"] div:nth-of-type(2) div {
     background-color: transparent !important;
     opacity: 1 !important;
-    transform: translate(0, 0) !important;
+    transform: translate(0, -5%) !important;
 }
 
 div[data-testid="container"] div:nth-of-type(3) div {
