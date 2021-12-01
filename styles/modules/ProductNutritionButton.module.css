@@ -1,0 +1,21 @@
+.button {
+    background-image: url("/img/nutrition/mutual/button.webp");
+    text-transform: uppercase;
+    font-family: "Social Gothic Demi-Bold", sans-serif;
+    background-color: transparent;
+    background-size: cover;
+    background-position: center;
+    border: 0;
+    outline: 0;
+    padding: 1em 2.2em;
+    cursor: pointer;
+    color: #000;
+    z-index: 2;
+    transition: 0.2s all ease-in-out;
+}
+
+.button:hover {
+    color: #fff;
+    cursor: pointer;
+    transform: scale(1.075);
+}
