@@ -1,0 +1,141 @@
+.productNutrition {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(240, 227, 228, 0.95);
+}
+
+.productNutrition .weight {
+    text-align: right;
+    line-height: 1.1em;
+    font-family: "Open Sans", sans-serif;
+    position: absolute;
+    display: inline-block;
+    right: 11%;
+    top: 2%;
+}
+
+.productNutrition strong {
+    font-family: "Social Gothic Bold", sans-serif;
+    text-transform: uppercase;
+}
+
+.productNutrition .heading {
+    color: #000;
+    line-height: 1.1em;
+}
+
+.productNutrition .flavors,
+.productNutrition .description,
+.productNutrition .nutritionTable {
+    margin-left: 8%;
+    margin-top: 2%;
+}
+
+.productNutrition > div:first-of-type {
+    margin-top: 12%;
+}
+
+.productNutrition .flavors ul {
+    font-family: "Cormonant Garamond Bold", serif;
+    list-style: none;
+    padding-left: 0;
+    text-align: left;
+}
+
+.productNutrition .description {
+    font-family: "Cormonant Garamond Bold", serif;
+    width: 85%;
+}
+
+.productNutrition .description p {
+    margin: 0;
+    text-align: left;
+    letter-spacing: 0.4px;
+}
+
+.productNutrition i {
+    position: absolute;
+    right: 4%;
+    top: 4%;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+.productNutrition .nutritionTable {
+    display: flex;
+    column-gap: 3rem;
+    padding-bottom: 2.5rem;
+}
+
+.productNutrition .nutritionTable table {
+    font-family: "Cormonant Garamond Bold", serif;
+    font-size: 1.4em;
+    border-left: 3px solid #c7bab6;
+    padding-left: 1.2rem;
+    margin-top: 1rem;
+}
+
+.productNutrition .nutritionTable th, .productNutrition .nutritionTable td {
+    text-align: left;
+}
+
+.productNutrition .nutritionTable th {
+    padding-right: 2em;
+}
+
+@media (max-height: 900px) {
+    .productNutrition {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-height: 800px) {
+    .productNutrition {
+        font-size: 0.75em;
+    }
+}
+
+@media (max-width: 1150px), (max-height: 600px) {
+    .productNutrition .nutritionTable table {
+        right: 20%;
+    }
+}
+
+@media (max-width: 1100px) {
+    .productNutrition {
+        min-width: 600px;
+    }
+
+    .nutritionTable {
+        flex-direction: column;
+    }
+
+    .productNutrition > div:first-of-type {
+        margin-top: 16%;
+    }
+}
+
+@media (max-height: 700px) {
+    .productNutrition {
+        font-size: 0.6em;
+    }
+}
+
+@media (max-width: 650px) {
+    .productNutrition {
+        min-width: 400px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 420px) {
+    .productNutrition {
+        min-width: unset;
+        width: 95%;
+        font-size: 10px;
+    }
+}
+
