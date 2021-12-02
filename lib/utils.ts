@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import { IChocolateBox } from "../data/chocolate-boxes";
-import { IChocolateBar } from "../data/chocolate-bars";
+import { IChocolateBox } from "data/chocolate-boxes";
+import { IChocolateBar } from "data/chocolate-bars";
 
 export const setAndSaveToLocalStorage = (
   newValue: any,
@@ -26,10 +26,6 @@ export const titleCaseToParamCase = (string: string) => {
 };
 
 export const paramCaseToLowerCase = (string: string) => {
-  console.log(
-    "paramCaseToLowerCase =>",
-    string.replace(/-/g, " ").toLowerCase()
-  );
   return string.replace(/-/g, " ").toLowerCase();
 };
 

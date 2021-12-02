@@ -4,7 +4,7 @@ import { Intro } from "components/Intro";
 import { Container } from "components/Container";
 import { WhereToFindUs } from "components/WhereToFindUs";
 import { AboutUs } from "components/AboutUs";
-import { ChocolateBoxes } from "../components/ChocolateBoxes";
+import { ChocolateBoxes } from "components/ChocolateBoxes";
 
 const Home: NextPage = () => {
   return (

@@ -1,11 +1,11 @@
 import { FC, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import styles from "styles/modules/ChocolateBoxes.module.css";
-import { chocolateBoxes } from "../../data/chocolate-boxes";
-import { ChocolateBox } from "../ChocolateBox";
-import { CustomCarouselNav } from "../CustomCarouselNav";
+import { chocolateBoxes } from "data/chocolate-boxes";
+import { ChocolateBox } from "components/ChocolateBox";
+import { CustomCarouselNav } from "components/CustomCarouselNav";
 import { useRouter } from "next/router";
-import { getIndexOfProductByName, paramCaseToLowerCase } from "../../lib/utils";
+import { getIndexOfProductByName, paramCaseToLowerCase } from "lib/utils";
 
 interface ChocolateBoxesProps {}
 

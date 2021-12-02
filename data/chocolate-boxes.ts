@@ -1,4 +1,4 @@
-import { Product } from "../lib/globalTypes";
+import { Product } from "lib/globalTypes";
 
 export interface IChocolateBox extends Product {
   secondaryColor: string;

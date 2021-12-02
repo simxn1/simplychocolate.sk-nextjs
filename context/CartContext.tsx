@@ -7,7 +7,7 @@ import {
   useContext,
   useState,
 } from "react";
-import { chocolateBoxes } from "../data/chocolate-boxes";
+import { chocolateBoxes } from "data/chocolate-boxes";
 
 const CartContext = createContext<ICartContext>({
   chocolateBoxesQuantity: null,

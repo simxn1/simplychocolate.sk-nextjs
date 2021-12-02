@@ -6,7 +6,7 @@ import { ChocolateBoxCart } from "components/ChocolateBoxCart";
 import { isMobileOnly } from "react-device-detect";
 import { ProductNutrition } from "components/ProductNutrition";
 import { ProductNutritionButton } from "components/ProductNutritionButton";
-import { stringifyPrice, titleCaseToParamCase } from "../../lib/utils";
+import { stringifyPrice, titleCaseToParamCase } from "lib/utils";
 
 interface ChocolateBoxProps {
   chocolateBox: IChocolateBox;

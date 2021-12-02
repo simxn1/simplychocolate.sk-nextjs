@@ -1,8 +1,8 @@
 import type { GetStaticProps, GetStaticPropsContext, NextPage } from "next";
-import { chocolateBoxes } from "../data/chocolate-boxes";
-import { chocolateBars } from "../data/chocolate-bars";
+import { chocolateBoxes } from "data/chocolate-boxes";
+import { chocolateBars } from "data/chocolate-bars";
 import { useEffect } from "react";
-import { paramCaseToLowerCase } from "../lib/utils";
+import { paramCaseToLowerCase } from "lib/utils";
 
 interface Props {
   productName: string;

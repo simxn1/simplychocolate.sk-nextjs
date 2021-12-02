@@ -9,7 +9,7 @@ export interface AboutUsSectionProps {
   desc: string;
 }
 
-export const Section: FC<AboutUsSectionProps> = ({
+export const AboutUsSection: FC<AboutUsSectionProps> = ({
   bg,
   desc,
   heading,

@@ -1,4 +1,4 @@
-import { Product } from "../lib/globalTypes";
+import { Product } from "lib/globalTypes";
 
 export interface IChocolateBar extends Product {
   icons: string;
