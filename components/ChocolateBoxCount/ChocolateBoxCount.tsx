@@ -5,6 +5,7 @@ import { chocolateBoxes } from "data/chocolate-boxes";
 import {
   CartContextLocalStorageKeys,
   setAndSaveToLocalStorage,
+  titleCaseToParamCase,
 } from "lib/utils";
 
 interface Props {}
@@ -42,7 +43,7 @@ export const ChocolateBoxCount: FC<Props> = ({}: Props) => {
         <strong>množstvo</strong>
         {chocolateBoxesQuantity?.map((quantity, index) => {
           const thisProduct = chocolateBoxes[index];
-          const imgName = thisProduct.name.replace(/\s+/g, "-");
+          const imgName = titleCaseToParamCase(thisProduct.name);
 
           if (!thisProduct.isSoldOut)
             return (

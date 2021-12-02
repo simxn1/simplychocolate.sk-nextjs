@@ -4,26 +4,38 @@ import styles from "styles/modules/ChocolateBoxes.module.css";
 import { chocolateBoxes } from "../../data/chocolate-boxes";
 import { ChocolateBox } from "../ChocolateBox";
 import { CustomCarouselNav } from "../CustomCarouselNav";
+import { useRouter } from "next/router";
+import { getIndexOfProductByName, paramCaseToLowerCase } from "../../lib/utils";
 
 interface ChocolateBoxesProps {}
 
 export const ChocolateBoxes: FC<
   ChocolateBoxesProps
 > = ({}: ChocolateBoxesProps) => {
-  const preselectedItem = 0;
+  const router = useRouter();
+  const { productName: preselectedBoxName } = router.query;
+
+  let preselectedItem = 0;
+  if (preselectedBoxName) {
+    preselectedItem =
+      getIndexOfProductByName(
+        chocolateBoxes,
+        paramCaseToLowerCase(preselectedBoxName as string)
+      ) ?? 0;
+  }
 
   const [selectedItem, setSelectedItem] = useState<number>(preselectedItem);
+  const [selectedNewItem, setSelectedNewItem] = useState(false);
 
   return (
-    <div id="chocolate-boxes">
+    <div id="chocolate-boxes" className={"section " + styles.carousel}>
       <Carousel
         autoPlay={false}
         showThumbs={false}
         showArrows={false}
         showStatus={false}
         showIndicators={false}
-        className={"section " + styles.carousel}
-        selectedItem={selectedItem}
+        selectedItem={selectedNewItem ? selectedItem : preselectedItem}
       >
         {chocolateBoxes.map((chocolateBox) => {
           return (
@@ -34,6 +46,7 @@ export const ChocolateBoxes: FC<
       <CustomCarouselNav
         products={chocolateBoxes}
         setSelectedItem={setSelectedItem}
+        setSelectedNewItem={setSelectedNewItem}
       />
     </div>
   );

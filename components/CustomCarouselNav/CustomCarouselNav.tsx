@@ -5,12 +5,19 @@ import { IChocolateBox } from "data/chocolate-boxes";
 interface CustomCarouselNavProps {
   products: IChocolateBox[];
   setSelectedItem: Dispatch<SetStateAction<number>>;
+  setSelectedNewItem: Dispatch<SetStateAction<boolean>>;
 }
 
 export const CustomCarouselNav = ({
   products,
   setSelectedItem,
+  setSelectedNewItem,
 }: CustomCarouselNavProps) => {
+  const handleSelect = (index: number) => {
+    setSelectedItem(index);
+    setSelectedNewItem(true);
+  };
+
   return (
     <div className={styles.nav}>
       {products.map((product, index) => {
@@ -18,7 +25,7 @@ export const CustomCarouselNav = ({
         return (
           <div
             className={styles.item}
-            onClick={() => setSelectedItem(index)}
+            onClick={() => handleSelect(index)}
             key={product.name}
           >
             <img src={`/img/carousel-nav/${imgName}.png`} alt={""} />

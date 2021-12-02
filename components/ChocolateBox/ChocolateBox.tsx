@@ -6,6 +6,7 @@ import { ChocolateBoxCart } from "components/ChocolateBoxCart";
 import { isMobileOnly } from "react-device-detect";
 import { ProductNutrition } from "components/ProductNutrition";
 import { ProductNutritionButton } from "components/ProductNutritionButton";
+import { stringifyPrice, titleCaseToParamCase } from "../../lib/utils";
 
 interface ChocolateBoxProps {
   chocolateBox: IChocolateBox;
@@ -27,8 +28,8 @@ export const ChocolateBox: FC<ChocolateBoxProps> = ({
     isSoldOut,
     isHalfDiscounted,
   } = chocolateBox;
-  const [isCartOpen, setIsCartOpen] = useState<boolean>(true);
-  const [isNutritionOpen, setIsNutritionOpen] = useState<boolean>(true);
+  const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
+  const [isNutritionOpen, setIsNutritionOpen] = useState<boolean>(false);
 
   const toggleIsCartOpen = () => {
     setIsCartOpen((prevState) => !prevState);
@@ -44,7 +45,7 @@ export const ChocolateBox: FC<ChocolateBoxProps> = ({
 
   const device = isMobileOnly ? "mobile" : "desktop";
 
-  const nameWithDashes = name.replace(/\s+/g, "-");
+  const nameWithDashes = titleCaseToParamCase(name);
 
   return (
     <>
@@ -82,7 +83,7 @@ export const ChocolateBox: FC<ChocolateBoxProps> = ({
                     textDecoration: isHalfDiscounted ? "line-through" : "",
                   }}
                 >
-                  {price + " €"}
+                  {stringifyPrice(price) + " €"}
                 </div>
                 {isHalfDiscounted && (
                   <strong
