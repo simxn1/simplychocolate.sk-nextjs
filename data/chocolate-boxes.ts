@@ -1,15 +1,9 @@
-export interface IChocolateBox {
-  name: string;
-  firstLine: string;
-  secondLine: string;
-  color: string;
+import { Product } from "../lib/globalTypes";
+
+export interface IChocolateBox extends Product {
   secondaryColor: string;
   price: number;
   pieces: number;
-  nutritionData: string[];
-  nutritionDesc: string;
-  isSoldOut?: boolean;
-  isHalfDiscounted?: boolean;
 }
 
 export const chocolateBoxes: IChocolateBox[] = [
