@@ -6,6 +6,7 @@ import { WhereToFindUs } from "components/WhereToFindUs";
 import { AboutUs } from "components/AboutUs";
 import { ChocolateBoxes } from "components/ChocolateBoxes";
 import { ChocolateBars } from "components/ChocolateBars";
+import { Contact } from "components/Contact";
 
 const Home: NextPage = () => {
   return (
@@ -16,6 +17,7 @@ const Home: NextPage = () => {
       <AboutUs />
       <ChocolateBoxes />
       <ChocolateBars />
+      <Contact />
     </Container>
   );
 };
