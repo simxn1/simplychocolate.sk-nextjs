@@ -24,6 +24,12 @@
     color: #000;
 }
 
+.right .icons {
+    position: relative;
+    top: 7.5vh;
+    left: 1vw;
+}
+
 .icons {
     width: 50% !important;
     height: 25% !important;

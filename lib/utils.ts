@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { IChocolateBox } from "data/chocolate-boxes";
-import { IChocolateBar } from "data/chocolate-bars";
+import { ProductType } from "lib/globalTypes";
 
 export const setAndSaveToLocalStorage = (
   newValue: any,
@@ -19,6 +18,7 @@ export const setAndSaveToLocalStorage = (
 
 export enum CartContextLocalStorageKeys {
   ChocolateBoxesQuantity = "chocolateBoxesQuantity",
+  ChocolateBarsQuantity = "chocolateBarsQuantity",
 }
 
 export const titleCaseToParamCase = (string: string) => {
@@ -33,14 +33,12 @@ export const stringifyPrice = (price: number): string => {
   return price.toString().slice(0, 2) + "," + price.toString().slice(2);
 };
 
-type Product = IChocolateBox | IChocolateBar;
-
 export const getIndexOfProductByName = (
-  products: Product[],
+  products: ProductType[],
   productNameInLowerCase: string
 ): number | null => {
   const productFound = products.find(
-    (product: Product) => product.name === productNameInLowerCase
+    (product: ProductType) => product.name === productNameInLowerCase
   );
 
   if (productFound) {

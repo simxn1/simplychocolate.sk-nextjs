@@ -8,13 +8,13 @@ interface Props {}
 
 export const Desktop: FC<Props> = ({}: Props) => {
   return (
-    <div className="section">
+    <div className="intro section">
       <i className="fas fa-arrow-down" style={{ position: "absolute" }} />
       <ReactCompareImage
         leftImage="/img/intro/desktop/left.jpg"
         leftImageLabel={
           (
-            <div className={styles.left}>
+            <div className={"compare-image-left-section " + styles.left}>
               <h1
                 className={"heading " + styles.heading}
                 style={{ marginBottom: "0" }}
@@ -55,7 +55,7 @@ export const Desktop: FC<Props> = ({}: Props) => {
                 </div>
               </div>
               <img
-                className={styles.icons}
+                className={"icons " + styles.icons}
                 src="img/intro/desktop/icons-black.png"
               />
             </div>
