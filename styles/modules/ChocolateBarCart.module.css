@@ -1,0 +1,198 @@
+.cart {
+    position: absolute;
+    background: #fff;
+    width: 41vw;
+    height: 75vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.cart i {
+    position: relative;
+    left: 30vh;
+    top: 6vh;
+    font-size: 3em;
+    cursor: pointer;
+    transition: 0.2s all ease-in-out;
+}
+
+.cart i:hover {
+    transform: scale(1.2);
+}
+
+.cart h2:first-of-type {
+    font-family: 'Social Gothic Bold', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    font-size: 3em;
+}
+
+.cart h3 {
+    font-family: 'Cormonant Garamond Medium', serif;
+    font-size: 1.7em;
+}
+
+.cart h2:nth-of-type(2) {
+    font-family: 'Social Gothic Bold', sans-serif;
+    text-transform: uppercase;
+    font-size: 2.1em;
+    margin-top: 6%;
+}
+
+.cart > button:focus {
+    outline: none;
+    cursor: pointer;
+}
+
+.cart > button:first-of-type {
+    border: 3px solid #000;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Social Gothic Demi-Bold', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.7em 1em;
+    border-radius: 0.8em;
+    font-size: 1.25em;
+    cursor: pointer;
+    display: block;
+    margin: 4% auto 0;
+    transition: 0.2s all ease-in-out;
+}
+
+.cart > button:first-of-type:hover {
+    color: #000 !important;
+    background-color: #fff;
+}
+
+.cart > button:nth-of-type(2) {
+    font-family: 'Social Gothic Demi-Bold', sans-serif;
+    background: none;
+    border: 0;
+    text-transform: uppercase;
+    text-decoration: underline;
+    font-size: 1em;
+    margin-top: 1%;
+    cursor: pointer;
+    transition: 0.2s all ease-in-out;
+}
+
+.cart > button:nth-of-type(2):hover {
+    transform: scale(1.075);
+}
+
+.boxSizes {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+    text-align: center;
+    margin-bottom: 2%;
+}
+
+.boxSizes li button {
+    background: transparent;
+    border: 0;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 1.6em;
+    width: 10em;
+}
+
+.boxSizes li button:focus {
+    outline: none;
+    border: 4px solid #000;
+    border-radius: 5px;
+}
+
+.boxSizes li button div {
+    display: inline;
+}
+
+.boxSizes li button div strong {
+    font-family: 'Social Gothic Bold', sans-serif;
+}
+
+.hint {
+    color: red;
+    font-family: "Social Gothic Demi-Bold", sans-serif;
+    text-transform: uppercase;
+}
+
+@media (max-width: 1600px) {
+    .cart {
+        font-size: 0.85em;
+        height: 70vh;
+    }
+}
+
+@media (max-width: 1500px) {
+    .cart {
+        font-size: 0.7em;
+    }
+}
+
+@media (max-width: 1200px) {
+    .cart {
+        font-size: 0.6em;
+        height: 65vh;
+    }
+
+    .cart i {
+        left: 25vh;
+    }
+}
+
+@media (max-width: 900px), (max-height: 650px) {
+    .cart {
+        font-size: 0.5em;
+    }
+
+    .cart i {
+        left: 23vh;
+    }
+}
+
+@media (max-width: 750px), (max-height: 600px) {
+
+    .cart {
+        font-size: 0.35em;
+        height: 53vh;
+    }
+
+    .cart i {
+        left: 21vh;
+    }
+
+}
+
+@media (max-width: 650px), (max-height: 500px) {
+    .cart {
+        font-size: 0.25em;
+        height: 46vh;
+        width: 38vw;
+    }
+
+    .cart i {
+        left: 18vh;
+    }
+}
+
+@media (max-width: 550px) {
+    .cart {
+        font-size: 12px;
+        width: 100%;
+        height: 100%;
+        padding: 0 3%;
+    }
+
+    .cart h2:first-of-type {
+        margin-top: 4rem;
+    }
+}
+
+@media (max-height: 650px) {
+    .cart {
+        font-size: 10px;
+    }
+}
