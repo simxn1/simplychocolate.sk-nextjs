@@ -5,6 +5,7 @@ import { Container } from "components/Container";
 import { WhereToFindUs } from "components/WhereToFindUs";
 import { AboutUs } from "components/AboutUs";
 import { ChocolateBoxes } from "components/ChocolateBoxes";
+import { ChocolateBars } from "components/ChocolateBars";
 
 const Home: NextPage = () => {
   return (
@@ -14,6 +15,7 @@ const Home: NextPage = () => {
       <WhereToFindUs />
       <AboutUs />
       <ChocolateBoxes />
+      <ChocolateBars />
     </Container>
   );
 };
