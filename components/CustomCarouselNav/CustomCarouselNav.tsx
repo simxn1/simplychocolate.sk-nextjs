@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
 import styles from "styles/modules/CarouselNav.module.css";
 import { ProductType } from "lib/globalTypes";
+import { titleCaseToParamCase } from "lib/utils";
 
 interface CustomCarouselNavProps {
   products: ProductType[];
@@ -21,7 +22,7 @@ export const CustomCarouselNav = ({
   return (
     <div className={styles.nav}>
       {products.map((product, index) => {
-        const imgName = product.name.replaceAll(" ", "-");
+        const imgName = titleCaseToParamCase(product.name);
         return (
           <div
             className={styles.item}
