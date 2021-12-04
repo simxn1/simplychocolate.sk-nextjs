@@ -155,3 +155,18 @@ export const chocolateBars: IChocolateBar[] = [
     color: "#82babd",
   },
 ];
+
+export type Size = "S" | "M" | "L" | "XL";
+
+export interface BoxSize {
+  size: Size;
+  barCount: 6 | 12 | 24 | 30;
+  price: 1350 | 2450 | 4750 | 5650;
+}
+
+export const boxSizes: BoxSize[] = [
+  { size: "S", barCount: 6, price: 1350 },
+  { size: "M", barCount: 12, price: 2450 },
+  { size: "L", barCount: 24, price: 4750 },
+  { size: "XL", barCount: 30, price: 5650 },
+];
