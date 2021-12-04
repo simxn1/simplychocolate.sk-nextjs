@@ -1,0 +1,27 @@
+@keyframes hint {
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(-14px, 0);
+    }
+}
+
+.hint {
+    position: absolute;
+    top: 8vh;
+    left: 37.5vw;
+    z-index: 2;
+    font-family: "Social Gothic Demi-Bold", sans-serif;
+    text-transform: uppercase;
+    color: black;
+}
+
+.hint img {
+    width: 6rem !important;
+    animation: hint 1s ease-in-out infinite;
+    -webkit-animation: hint 1s ease-in-out infinite;
+    -moz-animation: hint 1s ease-in-out infinite;
+}
