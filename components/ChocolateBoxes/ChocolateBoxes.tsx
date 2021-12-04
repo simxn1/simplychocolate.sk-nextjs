@@ -6,6 +6,8 @@ import { ChocolateBox } from "components/ChocolateBox";
 import { CustomCarouselNav } from "components/CustomCarouselNav";
 import { useRouter } from "next/router";
 import { getIndexOfProductByName, paramCaseToLowerCase } from "lib/utils";
+import { SectionId } from "lib/globalTypes";
+import { isMobileOnly } from "react-device-detect";
 
 interface ChocolateBoxesProps {}
 
@@ -28,7 +30,7 @@ export const ChocolateBoxes: FC<
   const [selectedNewItem, setSelectedNewItem] = useState(false);
 
   return (
-    <div id="chocolate-boxes" className={"section " + styles.carousel}>
+    <div id={SectionId.ChocolateBoxes} className={"section " + styles.carousel}>
       <Carousel
         autoPlay={false}
         showThumbs={false}
@@ -43,11 +45,13 @@ export const ChocolateBoxes: FC<
           );
         })}
       </Carousel>
-      <CustomCarouselNav
-        products={chocolateBoxes}
-        setSelectedItem={setSelectedItem}
-        setSelectedNewItem={setSelectedNewItem}
-      />
+      {!isMobileOnly && (
+        <CustomCarouselNav
+          products={chocolateBoxes}
+          setSelectedItem={setSelectedItem}
+          setSelectedNewItem={setSelectedNewItem}
+        />
+      )}
     </div>
   );
 };

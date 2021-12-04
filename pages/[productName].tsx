@@ -3,6 +3,7 @@ import { chocolateBoxes } from "data/chocolate-boxes";
 import { chocolateBars } from "data/chocolate-bars";
 import { useEffect } from "react";
 import { paramCaseToLowerCase } from "lib/utils";
+import { SectionId } from "../lib/globalTypes";
 
 interface Props {
   productName: string;
@@ -16,12 +17,12 @@ const ProductRedirect: NextPage<Props> = ({ productName }: Props) => {
     if (
       chocolateBoxes.find((product) => product.name === lowerCaseProductName)
     ) {
-      scrollTo = "#chocolate-boxes";
+      scrollTo = "#" + SectionId.ChocolateBoxes;
     }
     if (
       chocolateBars.find((product) => product.name === lowerCaseProductName)
     ) {
-      scrollTo = "#chocolate-bars";
+      scrollTo = "#" + SectionId.ChocolateBars;
     }
 
     window.location.replace(
