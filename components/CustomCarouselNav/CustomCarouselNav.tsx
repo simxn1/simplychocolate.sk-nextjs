@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction } from "react";
 import styles from "styles/modules/CarouselNav.module.css";
-import { IChocolateBox } from "data/chocolate-boxes";
+import { ProductType } from "lib/globalTypes";
 
 interface CustomCarouselNavProps {
-  products: IChocolateBox[];
+  products: ProductType[];
   setSelectedItem: Dispatch<SetStateAction<number>>;
   setSelectedNewItem: Dispatch<SetStateAction<boolean>>;
 }
