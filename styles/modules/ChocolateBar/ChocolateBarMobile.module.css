@@ -1,0 +1,269 @@
+.chocolateBar {
+    background-position: 50% 40%;
+    background-size: cover;
+}
+
+.chocolateBar .heading {
+    font-family: 'Social Gothic Bold', sans-serif;
+    position: absolute;
+    top: 18%;
+    left: 12%;
+    font-size: 4em;
+    line-height: 1.1em;
+}
+
+.chocolateBar .price {
+    position: absolute;
+    left: 13%;
+    top: 36.5%;
+    display: block;
+    font-family: 'Social Gothic Demi-Bold', sans-serif;
+}
+
+.chocolateBar .discountPrice {
+    color: #ff6771;
+    padding-left: 1em;
+    font-size: 1.3em;
+}
+
+.bar {
+    width: 106vw !important;
+    position: relative;
+    top: 36.5vh;
+}
+
+.cta {
+    position: relative;
+    top: 33%;
+    color: #fff;
+    display: flex;
+    border: 2px solid #fff;
+    align-items: center;
+    justify-content: center;
+    width: 48%;
+    height: 2.5em;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.cta:hover {
+    cursor: pointer;
+}
+
+.cta button {
+    background-color: transparent;
+    border: none;
+    font-family: 'Social Gothic Demi-Bold', sans-serif;
+    font-size: 1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+.cta button:focus {
+    border: none;
+    outline: none;
+}
+
+.desc {
+    color: #fff;
+    text-align: left;
+    font-family: 'Cormonant Garamond Medium', serif;
+    position: relative;
+    top: 32%;
+    left: 12%;
+    font-size: 1.25em;
+    letter-spacing: 0.45px;
+}
+
+.icons {
+    width: 61% !important;
+    height: auto;
+    position: relative;
+    display: block !important;
+    top: 29%;
+    margin: 0;
+    left: 1%;
+}
+
+@media (max-height: 760px) {
+    .heading {
+        top: 15%;
+    }
+
+    .chocolateBar .price {
+        top: 35%;
+    }
+
+    .cta {
+        top: 31%;
+    }
+
+    .desc {
+        font-size: 1.1em;
+        top: 32%;
+    }
+
+    .icons {
+        width: 56% !important;
+        top: 29%;
+    }
+}
+
+@media (max-height: 750px) {
+    .cta button {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-height: 720px) {
+    .heading {
+        font-size: 3.2em;
+    }
+
+    .chocolateBar .price {
+        top: 32.5%;
+    }
+
+    .desc {
+        top: 31%;
+    }
+
+    .icons {
+        top: 28%;
+    }
+}
+
+@media (max-height: 690px) {
+    .heading {
+        top: 16%;
+        font-size: 3em;
+    }
+
+    .bar {
+        width: 110vw !important;
+    }
+
+    .cta {
+        width: 39%;
+    }
+
+    .cta button {
+        font-size: 0.8em;
+    }
+
+    .desc {
+        top: 29.5%;
+    }
+
+    .icons {
+        top: 26%;
+    }
+}
+
+@media (max-height: 670px) {
+    .bar {
+        top: 35vh;
+    }
+
+    .cta {
+        top: 29%;
+    }
+
+    .cta-container {
+        top: 65%;
+    }
+
+    .desc {
+        top: 28%;
+        font-size: 1.1em;
+        letter-spacing: 0.9px;
+    }
+
+    .icons {
+        top: 24.5%;
+    }
+}
+
+@media (max-height: 650px) {
+    .cta {
+        width: 33%;
+    }
+
+    .cta button {
+        font-size: 0.7em;
+    }
+
+    .desc {
+        font-size: 0.9em;
+    }
+
+    .icons {
+        top: 25%;
+        left: 3.5%;
+        width: 50% !important;
+    }
+}
+
+@media (max-height: 610px) {
+    .chocolateBar .price {
+        top: 34.5%;
+    }
+}
+
+@media (max-height: 600px) {
+    .cta {
+        width: 42%;
+    }
+
+    .cta button {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-height: 580px) {
+    .cta {
+        width: 37%;
+        height: 2em;
+    }
+
+    .cta button {
+        font-size: 0.7em;
+    }
+}
+
+@media (max-height: 550px) {
+    .chocolateBar {
+        background-position: 50% 44% !important;
+    }
+
+    .heading {
+        top: 14%;
+        font-size: 3em;
+    }
+
+    .chocolateBar .price {
+        top: 33.5%;
+    }
+
+    .bar {
+        top: 33vh;
+    }
+
+    .cta {
+        top: 26.5%;
+    }
+
+    .desc {
+        top: 25%;
+    }
+
+    .icons {
+        top: 21.5%;
+    }
+}
