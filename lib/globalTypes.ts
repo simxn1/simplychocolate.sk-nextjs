@@ -18,3 +18,10 @@ export enum SectionId {
   ChocolateBoxes = "chocolate-boxes",
   ChocolateBars = "chocolate-bars",
 }
+
+export enum CartContextLocalStorageKeys {
+  ChocolateBoxesQuantity = "chocolateBoxesQuantity",
+  ChocolateBarsQuantity = "chocolateBarsQuantity",
+  SelectedChocolateBarsBoxSize = "selectedChocolateBarsBoxSize",
+  TotalPrice = "totalPrice",
+}
