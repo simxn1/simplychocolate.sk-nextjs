@@ -1,0 +1,80 @@
+.chocolateBox {
+    position: relative;
+}
+
+.chocolateBox .back {
+    position: absolute;
+    left: 6%;
+    font-size: 1.75em;
+    cursor: pointer;
+}
+
+.chocolateBox h1 {
+    text-align: center;
+    font-family: 'League Spartan Bold', sans-serif;
+    font-size: 2em;
+    margin-top: 2.5em;
+    margin-bottom: 1em;
+}
+
+.chocolateBox h2 {
+    text-align: center;
+    font-family: 'Cormonant Garamond Bold', serif;
+    font-size: 1.2em;
+    margin-bottom: 3em;
+}
+
+
+.chocolateBox > button {
+    background: transparent;
+    border: 0;
+    outline: none;
+    font-family: "Social Gothic Bold", sans-serif;
+    text-transform: uppercase;
+    text-decoration: underline;
+    font-size: 1.1em;
+    position: absolute;
+    bottom: -18%;
+    left: 50%;
+    transform: translateX(-51%);
+    cursor: pointer;
+    color: #000;
+}
+
+.chocolateBox .err {
+    display: block;
+    color: red;
+    text-align: center;
+    font-family: "Open Sans Bold", sans-serif;
+    margin-top: 2vh;
+}
+
+@media screen and (max-width: 600px) {
+    .chocolateBox {
+        font-size: 0.85em;
+    }
+
+    .chocolateBox .back {
+        top: -10%;
+    }
+
+    .chocolateBox h1 {
+        margin-top: 4em;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .chocolateBox {
+        font-size: 0.7em;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .chocolateBox {
+        font-size: 0.55em;
+    }
+
+    .chocolateBox > button {
+        font-size: 1.4em;
+    }
+}
