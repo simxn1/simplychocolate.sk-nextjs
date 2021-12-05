@@ -7,14 +7,13 @@ import {
 } from "data/chocolate-bars";
 import { Mobile } from "./variant/Mobile";
 import { useCartContext } from "context/CartContext";
-import {
-  CartContextLocalStorageKeys,
-  setAndSaveToLocalStorage,
-} from "lib/utils";
+import { setAndSaveToLocalStorage } from "lib/utils";
 import { ChocolateBarCart } from "components/ChocolateBarCart";
 import { ProductNutrition } from "components/ProductNutrition";
 import { isMobileOnly } from "react-device-detect";
 import { Desktop } from "./variant/Desktop";
+import { CartContextLocalStorageKeys } from "lib/globalTypes";
+import { router } from "next/client";
 
 interface ChocolateBarProps {
   chocolateBar: IChocolateBar;
@@ -31,8 +30,11 @@ export const ChocolateBar: FC<ChocolateBarProps> = ({
   chocolateBar,
   index,
 }: ChocolateBarProps) => {
-  const { totalChocolateBarsQuanity, setChocolateBarsQuantity } =
-    useCartContext();
+  const {
+    selectedChocolateBarsBoxSize,
+    setSelectedChocolateBarsBoxSize,
+    setChocolateBarsQuantity,
+  } = useCartContext();
 
   const { nutritionData, nutritionDesc } = chocolateBar;
 
@@ -52,14 +54,21 @@ export const ChocolateBar: FC<ChocolateBarProps> = ({
     });
   };
 
-  const handleNewChocolateBarSize = (selectedSize: Size) => {
+  const handleNewChocolateBarSize = (newSelectedSize: Size) => {
     setIsHintVisible(false);
 
     const newChocolateBarsQuantity = chocolateBars.map(() => 0);
     newChocolateBarsQuantity[index] =
-      boxSizes.find((boxSize) => boxSize.size === selectedSize)?.barCount ?? 0;
+      boxSizes.find((boxSize) => boxSize.size === newSelectedSize)?.barCount ??
+      0;
 
-    setAndSaveToLocalStorage(
+    setAndSaveToLocalStorage<Size | null>(
+      newSelectedSize,
+      setSelectedChocolateBarsBoxSize,
+      CartContextLocalStorageKeys.SelectedChocolateBarsBoxSize
+    );
+
+    setAndSaveToLocalStorage<number[]>(
       newChocolateBarsQuantity,
       setChocolateBarsQuantity,
       CartContextLocalStorageKeys.ChocolateBarsQuantity
@@ -67,12 +76,14 @@ export const ChocolateBar: FC<ChocolateBarProps> = ({
   };
 
   const handleCheckout = () => {
-    if (!totalChocolateBarsQuanity) {
+    if (!selectedChocolateBarsBoxSize) {
       setIsHintVisible(true);
     }
   };
 
-  const handleMix = () => {};
+  const handleMix = () => {
+    router.push("/mix");
+  };
 
   return (
     <>

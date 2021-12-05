@@ -2,11 +2,8 @@ import { FC } from "react";
 import styles from "styles/modules/ChocolateBoxes.module.css";
 import { useCartContext } from "context/CartContext";
 import { chocolateBoxes } from "data/chocolate-boxes";
-import {
-  CartContextLocalStorageKeys,
-  setAndSaveToLocalStorage,
-  titleCaseToParamCase,
-} from "lib/utils";
+import { setAndSaveToLocalStorage, titleCaseToParamCase } from "lib/utils";
+import { CartContextLocalStorageKeys } from "lib/globalTypes";
 
 interface Props {}
 
@@ -18,9 +15,9 @@ export const ChocolateBoxCount: FC<Props> = ({}: Props) => {
     thisChocolateBoxIndex: number,
     amountToChangeBy: number
   ) => {
-    chocolateBoxesQuantity &&
-      setAndSaveToLocalStorage(
-        () => {
+    if (chocolateBoxesQuantity) {
+      setAndSaveToLocalStorage<number[]>(
+        (function () {
           let newChocolateBoxesQuantity = [...chocolateBoxesQuantity];
           if (
             newChocolateBoxesQuantity[thisChocolateBoxIndex] > 0 ||
@@ -31,10 +28,11 @@ export const ChocolateBoxCount: FC<Props> = ({}: Props) => {
               amountToChangeBy;
           }
           return newChocolateBoxesQuantity;
-        },
+        })(),
         setChocolateBoxesQuantity,
         CartContextLocalStorageKeys.ChocolateBoxesQuantity
       );
+    }
   };
 
   return (
