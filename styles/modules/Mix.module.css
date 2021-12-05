@@ -1,0 +1,239 @@
+.mix {
+    margin-top: 6vh;
+    overflow-y: scroll;
+    position: relative;
+    color: #000;
+}
+
+.mix .back {
+    position: absolute;
+    font-size: 2em;
+    top: 2%;
+    left: 7%;
+    cursor: pointer;
+}
+
+.mix .back i {
+    color: #000;
+}
+
+.mix h1 {
+    text-align: center;
+    font-family: 'League Spartan Bold', sans-serif;
+    font-size: 2.5em;
+}
+
+.mix h2 {
+    font-family: 'Open Sans Bold', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: -0.025em;
+    margin-top: 4vh;
+}
+
+.boxSizeSelection {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    padding-left: 0;
+}
+
+.boxSizeSelection li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.boxSizeSelection li button {
+    background-color: #ffffff;
+    color: #000;
+    font-family: 'Open Sans Bold', sans-serif;
+    border-radius: 0;
+    border: 3px solid #000;
+    font-size: 1.75em;
+    margin-right: 1em;
+    width: 2.5em;
+    height: 2.5em;
+    cursor: pointer;
+    padding: 0;
+}
+
+.boxSizeSelection li:last-child button {
+    margin-right: 0;
+}
+
+.boxSizeSelection li button:focus {
+    border-radius: 0;
+}
+
+.boxSizeSelection li .active {
+    background-color: #000000;
+    color: #fff;
+    border-radius: 0;
+    cursor: default;
+}
+
+.barSelection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+}
+
+.barSelection li {
+    font-family: 'Open Sans Bold', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 40vh;
+    font-size: 1.35em;
+    margin-bottom: 0.4em;
+}
+
+.barSelection li img {
+    width: 5vw;
+}
+
+.barQuantity input {
+    border: 0;
+    outline: none;
+    width: 1.5em;
+    text-align: center;
+    font-size: 1em;
+    margin: 0 0.4em;
+}
+
+.barQuantity button {
+    outline: none;
+    border: 0;
+    background-color: transparent;
+    font-size: 1em;
+    cursor: pointer;
+    color: #000;
+}
+
+.mix h3 {
+    font-size: 1.2em;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+
+.mix h3 strong {
+    font-family: 'Open Sans Bold', sans-serif;
+    width: 1.5em;
+    display: inline-block;
+}
+
+.mix h4 {
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    width: 40vh;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0 auto;
+    text-transform: uppercase;
+    font-size: 1.5em;
+}
+
+.mix .continue {
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+}
+
+.mix .continue button {
+    margin-right: 2em;
+    color: #fff;
+    border: 3px solid #000;
+    background-color: #000;
+    font-family: 'Open Sans Bold', sans-serif;
+    font-size: 1em;
+    padding: 1.5em;
+    border-radius: 2.2em;
+    transition: all .15s ease-in-out;
+}
+
+.mix .continue button:hover {
+    color: #000;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.mix .continue:focus {
+    outline: none;
+}
+
+.mix .isDiscounted, .mix .isDiscounted * {
+    color: #e51818cc;
+}
+
+p.isDiscounted {
+    text-align: center;
+    font-family: "Open Sans Bold", sans-serif;
+}
+
+.error {
+    color: red;
+    display: block;
+    text-align: center;
+    font-family: "Open Sans Bold", sans-serif;
+    margin-top: 2vh;
+}
+
+.price {
+    display: inline-block;
+}
+
+@media (max-width: 1100px) {
+    .barSelection li img {
+        width: 9vw;
+    }
+}
+
+@media (max-width: 500px) {
+    .mix {
+        font-size: 0.9em;
+    }
+
+    .mix .continue {
+        margin-bottom: 9vh;
+    }
+
+    .barSelection li img {
+        width: 14vw;
+    }
+}
+
+@media (max-width: 460px), (max-height: 850px) {
+    .mix {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 410px), (max-height: 750px) {
+    .mix {
+        font-size: 0.7em;
+    }
+}
+
+@media (max-width: 360px), (max-height: 700px) {
+    .mix {
+        font-size: 0.6em;
+    }
+}
+
+@media (max-width: 320px), (max-height: 600px) {
+    .mix {
+        font-size: 0.5em;
+    }
+}
+
+@media (max-height: 900px) {
+    .mix .back {
+        top: 0;
+    }
+}
