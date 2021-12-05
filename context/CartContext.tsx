@@ -5,28 +5,26 @@ import {
   ReactNode,
   SetStateAction,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import { chocolateBoxes } from "data/chocolate-boxes";
-import { chocolateBars } from "data/chocolate-bars";
+import { chocolateBars, Size } from "data/chocolate-bars";
+import { calculateTotalPrice, setAndSaveToLocalStorage } from "lib/utils";
+import { CartContextLocalStorageKeys } from "lib/globalTypes";
 
 interface ICartContext {
-  chocolateBoxesQuantity: number[] | null;
-  setChocolateBoxesQuantity: Dispatch<SetStateAction<number[]>> | null;
-  chocolateBarsQuantity: number[] | null;
-  setChocolateBarsQuantity: Dispatch<SetStateAction<number[]>> | null;
-  totalChocolateBarsQuanity: number | null;
-  setTotalChocolateBarsQuanity: Dispatch<SetStateAction<number>> | null;
+  chocolateBoxesQuantity?: number[];
+  setChocolateBoxesQuantity?: Dispatch<SetStateAction<number[]>>;
+  chocolateBarsQuantity?: number[];
+  setChocolateBarsQuantity?: Dispatch<SetStateAction<number[]>>;
+  selectedChocolateBarsBoxSize?: Size | null;
+  setSelectedChocolateBarsBoxSize?: Dispatch<SetStateAction<Size | null>>;
+  totalPrice?: number;
+  setTotalPrice?: Dispatch<SetStateAction<number>>;
 }
 
-const CartContext = createContext<ICartContext>({
-  chocolateBoxesQuantity: null,
-  setChocolateBoxesQuantity: null,
-  chocolateBarsQuantity: null,
-  setChocolateBarsQuantity: null,
-  totalChocolateBarsQuanity: null,
-  setTotalChocolateBarsQuanity: null,
-});
+const CartContext = createContext<ICartContext>({});
 
 interface Props {
   children: ReactNode;
@@ -41,16 +39,38 @@ export const CartContextWrapper: FC<Props> = ({ children }: Props) => {
     chocolateBars.map(() => 0)
   );
 
-  const [totalChocolateBarsQuanity, setTotalChocolateBarsQuanity] =
-    useState<number>(0);
+  const [selectedChocolateBarsBoxSize, setSelectedChocolateBarsBoxSize] =
+    useState<Size | null>(null);
+
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+
+  useEffect(() => {
+    const newTotalPrice = calculateTotalPrice(
+      selectedChocolateBarsBoxSize,
+      chocolateBarsQuantity,
+      chocolateBoxesQuantity
+    );
+
+    setAndSaveToLocalStorage<number>(
+      newTotalPrice,
+      setTotalPrice,
+      CartContextLocalStorageKeys.TotalPrice
+    );
+  }, [
+    chocolateBoxesQuantity,
+    chocolateBarsQuantity,
+    selectedChocolateBarsBoxSize,
+  ]);
 
   const shared: ICartContext = {
     chocolateBoxesQuantity,
     setChocolateBoxesQuantity,
     chocolateBarsQuantity,
     setChocolateBarsQuantity,
-    totalChocolateBarsQuanity,
-    setTotalChocolateBarsQuanity,
+    selectedChocolateBarsBoxSize,
+    setSelectedChocolateBarsBoxSize,
+    totalPrice,
+    setTotalPrice,
   };
 
   return <CartContext.Provider value={shared}>{children}</CartContext.Provider>;
