@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import styles from "styles/modules/Mix.module.css";
 import { boxSizes, chocolateBars, Size } from "data/chocolate-bars";
 import { chocolateBoxes } from "data/chocolate-boxes";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 import { useCartContext } from "context/CartContext";
 import { setAndSaveToLocalStorage, stringifyPrice } from "lib/utils";
@@ -22,71 +22,84 @@ const Mix: NextPage = () => {
   const [errSizeNotSelected, setErrSizeNotSelected] = useState<boolean>(false);
   const [errQuantity, setErrQuantity] = useState<boolean>(false);
 
-  const selectBoxSize = (size: Size) => {
-    setAndSaveToLocalStorage<Size | null>(
-      size,
-      setSelectedChocolateBarsBoxSize,
-      CartContextLocalStorageKeys.SelectedChocolateBarsBoxSize
-    );
-    setErrSizeNotSelected(false);
-  };
+  const totalChocolateBarsQuantity = useMemo(() => {
+    return chocolateBarsQuantity
+      ? chocolateBarsQuantity.reduce((a, b) => a + b, 0)
+      : 0;
+  }, [chocolateBarsQuantity]);
+
+  const currentAvailableBarsQuantity = useMemo(() => {
+    return boxSizes?.find(
+      (boxSize) => boxSize.size === selectedChocolateBarsBoxSize
+    )?.barCount;
+  }, [selectedChocolateBarsBoxSize]);
+
+  const selectBoxSize = useCallback(
+    (size: Size) => {
+      setAndSaveToLocalStorage<Size | null>(
+        size,
+        setSelectedChocolateBarsBoxSize,
+        CartContextLocalStorageKeys.SelectedChocolateBarsBoxSize
+      );
+      setErrSizeNotSelected(false);
+    },
+    [setSelectedChocolateBarsBoxSize]
+  );
 
   const handleGoBack = () => {
     router.back();
   };
 
-  const handleContinue = () => {
+  const handleContinue = useCallback(() => {
     if (currentAvailableBarsQuantity !== totalChocolateBarsQuantity) {
       setErrQuantity(true);
     } else router.push("/cart-check");
-  };
+  }, [currentAvailableBarsQuantity, router, totalChocolateBarsQuantity]);
 
-  const handleChocolateBox = () => {
+  const handleChocolateBox = useCallback(() => {
     if (currentAvailableBarsQuantity !== totalChocolateBarsQuantity) {
       setErrQuantity(true);
     } else router.push("/chocolate-box");
-  };
+  }, [currentAvailableBarsQuantity, router, totalChocolateBarsQuantity]);
 
-  const changeThisBarQuantity = (
-    barIndex: number,
-    amountToChangeBy: number
-  ) => {
-    if (!selectedChocolateBarsBoxSize) {
-      setErrSizeNotSelected(true);
-    }
+  const changeThisBarQuantity = useCallback(
+    (barIndex: number, amountToChangeBy: number) => {
+      if (!selectedChocolateBarsBoxSize) {
+        setErrSizeNotSelected(true);
+      }
 
-    if (
-      selectedChocolateBarsBoxSize &&
-      currentAvailableBarsQuantity &&
-      currentAvailableBarsQuantity >=
-        totalChocolateBarsQuantity + amountToChangeBy
-    ) {
-      setErrQuantity(false);
+      if (
+        selectedChocolateBarsBoxSize &&
+        currentAvailableBarsQuantity &&
+        currentAvailableBarsQuantity >=
+          totalChocolateBarsQuantity + amountToChangeBy
+      ) {
+        setErrQuantity(false);
 
-      setAndSaveToLocalStorage<number[]>(
-        (function () {
-          const newBarsQuantity = [...(chocolateBarsQuantity ?? [])];
+        setAndSaveToLocalStorage<number[]>(
+          (function () {
+            const newBarsQuantity = [...(chocolateBarsQuantity ?? [])];
 
-          if (newBarsQuantity[barIndex] + amountToChangeBy >= 0) {
-            newBarsQuantity[barIndex] =
-              newBarsQuantity[barIndex] + amountToChangeBy;
-          }
+            if (newBarsQuantity[barIndex] + amountToChangeBy >= 0) {
+              newBarsQuantity[barIndex] =
+                newBarsQuantity[barIndex] + amountToChangeBy;
+            }
 
-          return newBarsQuantity;
-        })(),
-        setChocolateBarsQuantity,
-        CartContextLocalStorageKeys.ChocolateBarsQuantity
-      );
-    }
-  };
-
-  const totalChocolateBarsQuantity = chocolateBarsQuantity
-    ? chocolateBarsQuantity.reduce((a, b) => a + b, 0)
-    : 0;
-
-  const currentAvailableBarsQuantity = boxSizes?.find(
-    (boxSize) => boxSize.size === selectedChocolateBarsBoxSize
-  )?.barCount;
+            return newBarsQuantity;
+          })(),
+          setChocolateBarsQuantity,
+          CartContextLocalStorageKeys.ChocolateBarsQuantity
+        );
+      }
+    },
+    [
+      chocolateBarsQuantity,
+      currentAvailableBarsQuantity,
+      selectedChocolateBarsBoxSize,
+      setChocolateBarsQuantity,
+      totalChocolateBarsQuantity,
+    ]
+  );
 
   useEffect(() => {
     if (selectedChocolateBarsBoxSize) setIsInfoVisible(true);
