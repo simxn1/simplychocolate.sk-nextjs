@@ -6,6 +6,7 @@ import {
   SetStateAction,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import { chocolateBoxes } from "data/chocolate-boxes";
@@ -22,6 +23,7 @@ interface ICartContext {
   setSelectedChocolateBarsBoxSize?: Dispatch<SetStateAction<Size | null>>;
   totalPrice?: number;
   setTotalPrice?: Dispatch<SetStateAction<number>>;
+  isCartEmpty?: boolean;
 }
 
 const CartContext = createContext<ICartContext>({});
@@ -43,6 +45,13 @@ export const CartContextWrapper: FC<Props> = ({ children }: Props) => {
     useState<Size | null>(null);
 
   const [totalPrice, setTotalPrice] = useState<number>(0);
+
+  const isCartEmpty: boolean = useMemo(() => {
+    return !(
+      chocolateBarsQuantity.reduce((a, b) => a + b, 0) > 0 ||
+      chocolateBoxesQuantity.reduce((a, b) => a + b, 0) > 0
+    );
+  }, [chocolateBarsQuantity, chocolateBoxesQuantity]);
 
   useEffect(() => {
     const newTotalPrice = calculateTotalPrice(
@@ -71,6 +80,7 @@ export const CartContextWrapper: FC<Props> = ({ children }: Props) => {
     setSelectedChocolateBarsBoxSize,
     totalPrice,
     setTotalPrice,
+    isCartEmpty,
   };
 
   return <CartContext.Provider value={shared}>{children}</CartContext.Provider>;
