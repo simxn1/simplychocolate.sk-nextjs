@@ -4,6 +4,7 @@ import { ChocolateBoxCount } from "components/ChocolateBoxCount";
 import { chocolateBoxes } from "data/chocolate-boxes";
 import { useState } from "react";
 import styles from "styles/modules/ChocolateBoxPage.module.css";
+import { Back } from "components/Back";
 
 const ChocolateBoxPage: NextPage = () => {
   const router = useRouter();
@@ -18,9 +19,7 @@ const ChocolateBoxPage: NextPage = () => {
 
   return (
     <div className={styles.chocolateBox}>
-      <span onClick={handleBack} className={styles.back}>
-        <i className="fas fa-long-arrow-alt-left" />
-      </span>
+      <Back />
       <h1>Mám chuť aj na bonboniéry!</h1>
       <h2>Objednaj si Simply Chocolate už dnes!</h2>
       <ChocolateBoxCount />

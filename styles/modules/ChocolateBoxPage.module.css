@@ -2,13 +2,6 @@
     position: relative;
 }
 
-.chocolateBox .back {
-    position: absolute;
-    left: 6%;
-    font-size: 1.75em;
-    cursor: pointer;
-}
-
 .chocolateBox h1 {
     text-align: center;
     font-family: 'League Spartan Bold', sans-serif;
@@ -52,10 +45,6 @@
 @media screen and (max-width: 600px) {
     .chocolateBox {
         font-size: 0.85em;
-    }
-
-    .chocolateBox .back {
-        top: -10%;
     }
 
     .chocolateBox h1 {

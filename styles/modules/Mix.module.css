@@ -5,18 +5,6 @@
     color: #000;
 }
 
-.mix .back {
-    position: absolute;
-    font-size: 2em;
-    top: 2%;
-    left: 7%;
-    cursor: pointer;
-}
-
-.mix .back i {
-    color: #000;
-}
-
 .mix h1 {
     text-align: center;
     font-family: 'League Spartan Bold', sans-serif;
@@ -229,11 +217,5 @@ p.isDiscounted {
 @media (max-width: 320px), (max-height: 600px) {
     .mix {
         font-size: 0.5em;
-    }
-}
-
-@media (max-height: 900px) {
-    .mix .back {
-        top: 0;
     }
 }

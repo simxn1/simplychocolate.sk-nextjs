@@ -1,0 +1,17 @@
+.back {
+    position: absolute;
+    font-size: 2em;
+    top: 2%;
+    left: 7%;
+    cursor: pointer;
+}
+
+.back i {
+    color: #000;
+}
+
+@media (max-height: 900px) {
+    .mix .back {
+        top: 0;
+    }
+}

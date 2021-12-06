@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useCartContext } from "context/CartContext";
 import { setAndSaveToLocalStorage, stringifyPrice } from "lib/utils";
 import { CartContextLocalStorageKeys } from "lib/globalTypes";
+import { Back } from "components/Back";
 
 const Mix: NextPage = () => {
   const router = useRouter();
@@ -45,10 +46,6 @@ const Mix: NextPage = () => {
     },
     [setSelectedChocolateBarsBoxSize]
   );
-
-  const handleGoBack = () => {
-    router.back();
-  };
 
   const handleContinue = useCallback(() => {
     if (currentAvailableBarsQuantity !== totalChocolateBarsQuantity) {
@@ -107,9 +104,7 @@ const Mix: NextPage = () => {
 
   return (
     <div className={styles.mix}>
-      <span onClick={handleGoBack} className={styles.back}>
-        <i className="fas fa-long-arrow-alt-left" />
-      </span>
+      <Back />
       <h1>
         Mám chuť na
         <br />
