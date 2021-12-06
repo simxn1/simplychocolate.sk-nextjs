@@ -13,7 +13,7 @@ import { ProductNutrition } from "components/ProductNutrition";
 import { isMobileOnly } from "react-device-detect";
 import { Desktop } from "./variant/Desktop";
 import { CartContextLocalStorageKeys } from "lib/globalTypes";
-import { router } from "next/client";
+import { useRouter } from "next/router";
 
 interface ChocolateBarProps {
   chocolateBar: IChocolateBar;
@@ -30,6 +30,8 @@ export const ChocolateBar: FC<ChocolateBarProps> = ({
   chocolateBar,
   index,
 }: ChocolateBarProps) => {
+  const router = useRouter();
+
   const {
     selectedChocolateBarsBoxSize,
     setSelectedChocolateBarsBoxSize,
