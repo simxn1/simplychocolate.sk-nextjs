@@ -5,17 +5,22 @@ import { chocolateBoxes } from "data/chocolate-boxes";
 import { useState } from "react";
 import styles from "styles/modules/ChocolateBoxPage.module.css";
 import { Back } from "components/Back";
+import { useCartContext } from "context/CartContext";
 
 const ChocolateBoxPage: NextPage = () => {
   const router = useRouter();
+  const { chocolateBoxesQuantity } = useCartContext();
 
   const [errVisible, setErrVisible] = useState<boolean>(false);
 
-  const handleBack = () => {
-    router.back();
+  const handleCheckout = () => {
+    if (
+      chocolateBoxesQuantity?.length &&
+      chocolateBoxesQuantity.reduce((a, b) => a + b, 0) > 0
+    ) {
+      router.push("/cart-check");
+    } else setErrVisible(true);
   };
-
-  const handleCheckout = () => {};
 
   return (
     <div className={styles.chocolateBox}>
@@ -27,13 +32,7 @@ const ChocolateBoxPage: NextPage = () => {
         <span className={styles.err}>Vyberte si množstvo bonboniér.</span>
       )}
       {chocolateBoxes.some((box) => box.isHalfDiscounted) && (
-        <p
-          style={{
-            color: "#e51818cc",
-            textAlign: "center",
-            fontFamily: "Open Sans Bold",
-          }}
-        >
+        <p className={styles.discountReminder}>
           Bonboniéram končí spotreba, máš ich so zľavou 50%
         </p>
       )}

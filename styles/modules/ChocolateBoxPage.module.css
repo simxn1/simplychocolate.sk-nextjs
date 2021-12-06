@@ -17,7 +17,6 @@
     margin-bottom: 3em;
 }
 
-
 .chocolateBox > button {
     background: transparent;
     border: 0;
@@ -40,6 +39,12 @@
     text-align: center;
     font-family: "Open Sans Bold", sans-serif;
     margin-top: 2vh;
+}
+
+.chocolateBox .discountReminder {
+    color: #e51818cc;
+    text-align: center;
+    font-family: "Open Sans Bold", sans-serif;
 }
 
 @media screen and (max-width: 600px) {
