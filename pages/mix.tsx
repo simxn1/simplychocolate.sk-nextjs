@@ -5,7 +5,11 @@ import { chocolateBoxes } from "data/chocolate-boxes";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 import { useCartContext } from "context/CartContext";
-import { setAndSaveToLocalStorage, stringifyPrice } from "lib/utils";
+import {
+  capitalize,
+  setAndSaveToLocalStorage,
+  stringifyPrice,
+} from "lib/utils";
 import { CartContextLocalStorageKeys } from "lib/globalTypes";
 import { Back } from "components/Back";
 
@@ -139,7 +143,7 @@ const Mix: NextPage = () => {
                     .toLowerCase()}.png`}
                   alt={""}
                 />
-                {bar.name}
+                {capitalize(bar.name)}
                 <div className={styles.barQuantity}>
                   <button onClick={() => changeThisBarQuantity(index, -1)}>
                     -

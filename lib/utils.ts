@@ -117,3 +117,7 @@ export const calculateTotalPrice = (
 
   return newTotalPrice;
 };
+
+export const capitalize = (str: string): string => {
+  return str.replace(/(?:^|\s|["'([{])+\S/g, (match) => match.toUpperCase());
+};
