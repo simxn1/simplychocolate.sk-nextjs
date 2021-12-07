@@ -37,3 +37,19 @@ export interface DeliveryInfoForm {
   zipCode: string;
   errors?: Record<string, any>;
 }
+
+export interface DiscountCode {
+  name: string;
+}
+
+export enum PaymentMethod {
+  Online = "online",
+  Cash = "cash",
+}
+
+export enum ShippingMethod {
+  Courier = "courier",
+  CzechRepublic = "czechRepublic",
+  PickUpAtStore = "pickUpAtStore",
+  DeliveryPoint = "deliveryPoint",
+}
