@@ -30,7 +30,9 @@ interface ICartContext {
   setTotalPrice?: Dispatch<SetStateAction<number>>;
   isCartEmpty?: boolean;
   deliveryInfo?: DeliveryInfoForm | null;
-  setDeliveryInfo?: Dispatch<SetStateAction<DeliveryInfoForm | null>>;
+  setDeliveryInfo?: Dispatch<
+    SetStateAction<DeliveryInfoForm | null | undefined>
+  >;
   orderId?: string | null;
   setOrderId?: Dispatch<SetStateAction<string | null>>;
   paymentMethod?: PaymentMethod | null;
@@ -59,9 +61,9 @@ export const CartContextWrapper: FC<Props> = ({ children }: Props) => {
 
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
-  const [deliveryInfo, setDeliveryInfo] = useState<DeliveryInfoForm | null>(
-    null
-  );
+  const [deliveryInfo, setDeliveryInfo] = useState<
+    DeliveryInfoForm | null | undefined
+  >(null);
 
   const [orderId, setOrderId] = useState<string | null>(null);
 

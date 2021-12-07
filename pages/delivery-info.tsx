@@ -1,62 +1,16 @@
 import { NextPage } from "next";
-import { useMemo } from "react";
 import { Back } from "components/Back";
 import { useForm } from "react-hook-form";
 import styles from "styles/modules/DeliveryInfo.module.css";
 import { DeliveryInfoForm } from "lib/globalTypes";
 import { useCartContext } from "context/CartContext";
 import { useRouter } from "next/router";
+import { inputs } from "data/delivery";
 
 const DeliveryInfo: NextPage = () => {
   const router = useRouter();
   const { register, handleSubmit } = useForm();
   const { setDeliveryInfo } = useCartContext();
-
-  const inputs: { type: string; name: string; placeholder: string }[] =
-    useMemo(() => {
-      return [
-        {
-          type: "text",
-          name: "firstName",
-          placeholder: "Meno",
-        },
-        {
-          type: "text",
-          name: "lastName",
-          placeholder: "Priezvisko",
-        },
-        {
-          type: "email",
-          name: "email",
-          placeholder: "Email",
-        },
-        {
-          type: "text",
-          name: "phone",
-          placeholder: "Telefónne číslo (09XX...)",
-        },
-        {
-          type: "text",
-          name: "address",
-          placeholder: "Ulica s číslom",
-        },
-        {
-          type: "text",
-          name: "city",
-          placeholder: "Mesto",
-        },
-        {
-          type: "text",
-          name: "country",
-          placeholder: "Krajina",
-        },
-        {
-          type: "text",
-          name: "zipCode",
-          placeholder: "PSČ",
-        },
-      ];
-    }, []);
 
   const continueCheckout = (data: DeliveryInfoForm) => {
     setDeliveryInfo && setDeliveryInfo(data);

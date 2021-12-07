@@ -70,3 +70,28 @@ div[data-testid="container"] div:nth-of-type(3) div {
     margin: 0 0.2em;
     outline: none;
 }
+
+/*
+    besteron
+*/
+.shop-iframe {
+    background: rgba(255, 255, 255, 0.95);
+    bottom: 0;
+    display: block;
+    left: 0;
+    overflow-y: scroll;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 500000;
+    -webkit-overflow-scrolling: touch;
+}
+
+.besteron-iframe {
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    overflow-y: hidden;
+    width: 100%;
+    z-index: 12;
+}

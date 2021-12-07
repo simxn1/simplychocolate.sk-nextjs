@@ -1,0 +1,195 @@
+.summary h1 {
+    font-family: 'League Spartan Bold', sans-serif;
+    text-align: center;
+    margin-top: 7vh;
+    margin-bottom: 0;
+}
+
+.summary h3 {
+    margin-top: 0.5em;
+    text-align: center;
+    font-family: 'League Spartan Bold', sans-serif;
+    font-size: 1.1em;
+}
+
+.summary .billingInfo {
+    display: flex;
+    justify-content: center;
+}
+
+.summary .billingInfo ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 6vh;
+    font-size: 1.5em;
+    font-family: 'League Spartan Bold', sans-serif;
+}
+
+.summary .billingInfo ul li {
+    padding-top: 0.1em;
+}
+
+.summary .billingInfo form {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    margin-top: 6vh;
+}
+
+.summary .billingInfo form input {
+    border: 0;
+    outline: none;
+    font-family: 'League Spartan Bold', sans-serif;
+    font-size: 1.5em;
+    text-align: right;
+    -webkit-appearance: none;
+    padding: 1px;
+    margin: 0;
+}
+
+.summary label {
+    font-family: 'League Spartan Bold', sans-serif;
+    margin-top: 3vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+}
+
+.summary label input {
+    margin-right: 1em;
+}
+
+.summary .different-address-delivery form {
+    display: flex;
+    flex-direction: column;
+    width: 14vw;
+    margin: 3vh auto 0;
+}
+
+.summary .different-address-delivery form input {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1em;
+    padding: 0.4em;
+    border: 2px solid #c3c3c3;
+    border-radius: 0.3em;
+    margin: 0.6em 0 0;
+    -webkit-appearance: none;
+}
+
+.termsAgree a {
+    color: #000;
+    text-decoration: underline;
+}
+
+.confirm {
+    border: 5px solid #000;
+    border-radius: 1.5em;
+    font-family: 'League Spartan Bold', sans-serif;
+    font-size: 1.6em;
+    color: #fff;
+    background-color: #000;
+    padding: 1em 1.4em;
+    display: inline;
+    margin: 0 auto;
+    transition: 0.2s all ease-in-out;
+}
+
+.confirm:hover {
+    cursor: pointer;
+    background-color: #fff;
+    color: #000000;
+}
+
+.confirm:focus {
+    outline: none;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (max-width: 1500px) {
+    .summary .different-address-delivery form {
+        width: 18vw;
+    }
+
+}
+
+@media (max-width: 1200px) {
+    .summary .billingInfo form {
+        width: 25vw;
+    }
+
+    .summary .different-address-delivery form {
+        width: 21vw;
+    }
+}
+
+@media (max-width: 1000px) {
+    .summary .billingInfo form {
+        width: 29vw;
+    }
+
+    .summary .different-address-delivery form {
+        width: 24vw;
+    }
+}
+
+@media (max-width: 850px) {
+    .summary .billingInfo form {
+        width: 35vw;
+    }
+
+    .summary .different-address-delivery form {
+        width: 30vw;
+    }
+}
+
+@media (max-width: 750px) {
+    .summary .billingInfo form {
+        width: 40vw;
+    }
+
+    .summary .different-address-delivery form {
+        width: 35vw;
+    }
+}
+
+@media (max-width: 650px) {
+    .summary .billingInfo form {
+        width: 45vw;
+    }
+
+    .summary .different-address-delivery form {
+        width: 40vw;
+    }
+}
+
+@media (max-width: 550px) {
+    .summary {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .summary {
+        font-size: 0.7rem;
+    }
+
+    .summary .billingInfo form {
+        width: 48vw;
+    }
+
+    .summary .different-address-delivery form {
+        width: 46vw;
+    }
+}
+
+@media (max-height: 900px) {
+    .summary .confirm {
+        margin-bottom: 10vh;
+    }
+}

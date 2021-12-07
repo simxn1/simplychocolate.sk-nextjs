@@ -35,7 +35,7 @@ export interface DeliveryInfoForm {
   city: string;
   country: string;
   zipCode: string;
-  errors?: Record<string, any>;
+  errors?: any;
 }
 
 export interface DiscountCode {
