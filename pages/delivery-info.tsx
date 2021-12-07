@@ -5,8 +5,10 @@ import { useForm } from "react-hook-form";
 import styles from "styles/modules/DeliveryInfo.module.css";
 import { DeliveryInfoForm } from "lib/globalTypes";
 import { useCartContext } from "context/CartContext";
+import { useRouter } from "next/router";
 
 const DeliveryInfo: NextPage = () => {
+  const router = useRouter();
   const { register, handleSubmit } = useForm();
   const { setDeliveryInfo } = useCartContext();
 
@@ -58,6 +60,7 @@ const DeliveryInfo: NextPage = () => {
 
   const continueCheckout = (data: DeliveryInfoForm) => {
     setDeliveryInfo && setDeliveryInfo(data);
+    router.push("/payment-info");
   };
 
   return (
