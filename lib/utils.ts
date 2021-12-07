@@ -121,3 +121,14 @@ export const calculateTotalPrice = (
 export const capitalize = (str: string): string => {
   return str.replace(/(?:^|\s|["'([{])+\S/g, (match) => match.toUpperCase());
 };
+
+export const generateOrderId = (): string => {
+  let now = Date.now().toString(); // 13 char number
+  // pad with extra random digit
+  now += now + Math.floor(Math.random() * 10);
+  // format
+  const orderId = [now.slice(0, 4), now.slice(4, 10), now.slice(10, 14)].join(
+    "-"
+  );
+  return orderId;
+};
