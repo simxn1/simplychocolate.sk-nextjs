@@ -80,6 +80,8 @@ export const ChocolateBar: FC<ChocolateBarProps> = ({
   const handleCheckout = () => {
     if (!selectedChocolateBarsBoxSize) {
       setIsHintVisible(true);
+    } else {
+      router.push("/cart-check");
     }
   };
 
