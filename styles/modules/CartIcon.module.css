@@ -1,0 +1,32 @@
+.cartIcon {
+    position: absolute;
+    z-index: 1;
+    top: 2.4rem;
+    right: 2.4rem;
+    font-size: 2.6rem;
+    color: #fac332 !important;
+    cursor: pointer;
+}
+
+.cartNotEmptyIndicator {
+    display: inline-block;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    background-color: red;
+    position: relative;
+    top: 0.7rem;
+    left: 0.85rem;
+    color: white;
+    font-size: 0.9rem;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+}
+
+@media (max-width: 450px) {
+    .cartIcon {
+        top: 2rem;
+        right: 2rem;
+        font-size: 2.2rem;
+    }
+}
