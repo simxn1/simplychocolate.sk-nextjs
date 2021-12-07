@@ -12,7 +12,7 @@ import {
 import { chocolateBoxes } from "data/chocolate-boxes";
 import { chocolateBars, Size } from "data/chocolate-bars";
 import { calculateTotalPrice, setAndSaveToLocalStorage } from "lib/utils";
-import { CartContextLocalStorageKeys } from "lib/globalTypes";
+import { CartContextLocalStorageKeys, DeliveryInfoForm } from "lib/globalTypes";
 
 interface ICartContext {
   chocolateBoxesQuantity?: number[];
@@ -24,6 +24,8 @@ interface ICartContext {
   totalPrice?: number;
   setTotalPrice?: Dispatch<SetStateAction<number>>;
   isCartEmpty?: boolean;
+  deliveryInfo?: DeliveryInfoForm | null;
+  setDeliveryInfo?: Dispatch<SetStateAction<DeliveryInfoForm | null>>;
 }
 
 const CartContext = createContext<ICartContext>({});
@@ -45,6 +47,10 @@ export const CartContextWrapper: FC<Props> = ({ children }: Props) => {
     useState<Size | null>(null);
 
   const [totalPrice, setTotalPrice] = useState<number>(0);
+
+  const [deliveryInfo, setDeliveryInfo] = useState<DeliveryInfoForm | null>(
+    null
+  );
 
   const isCartEmpty: boolean = useMemo(() => {
     return !(
@@ -80,6 +86,8 @@ export const CartContextWrapper: FC<Props> = ({ children }: Props) => {
     setSelectedChocolateBarsBoxSize,
     totalPrice,
     setTotalPrice,
+    deliveryInfo,
+    setDeliveryInfo,
     isCartEmpty,
   };
 

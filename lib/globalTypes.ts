@@ -25,3 +25,15 @@ export enum CartContextLocalStorageKeys {
   SelectedChocolateBarsBoxSize = "selectedChocolateBarsBoxSize",
   TotalPrice = "totalPrice",
 }
+
+export interface DeliveryInfoForm {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  address: string;
+  city: string;
+  country: string;
+  zipCode: string;
+  errors?: Record<string, any>;
+}

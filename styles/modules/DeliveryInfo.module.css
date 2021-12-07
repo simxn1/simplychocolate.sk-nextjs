@@ -1,0 +1,157 @@
+.deliveryInfo {
+    margin-top: 6vh;
+}
+
+.logo {
+    width: 8em;
+    margin: 0 auto;
+    display: block;
+}
+
+.deliveryInfo h1 {
+    margin-top: 4vh;
+}
+
+.deliveryInfo h1, .deliveryInfo h2 {
+    text-align: center;
+    font-family: 'League Spartan Bold', sans-serif;
+}
+
+.deliveryInfo form {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    width: 27vw;
+    margin: 6vh auto 0;
+    grid-row-gap: 2vh;
+    grid-column-gap: 3vw;
+}
+
+.deliveryInfo form input {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1em;
+    padding: 0.4em;
+    border: 2px solid #c3c3c3;
+    border-radius: 0.3em;
+    -webkit-appearance: none;
+}
+
+.deliveryInfo form input:focus {
+    outline: none;
+}
+
+.deliveryInfo form input[name="firstName"] {
+    grid-column: 1 / 3;
+    text-transform: capitalize;
+}
+
+.deliveryInfo form input[name="lastName"] {
+    grid-column: 3 / 5;
+    text-transform: capitalize;
+}
+
+.deliveryInfo form input[name="email"] {
+    grid-column: 1 / 3;
+}
+
+.deliveryInfo form input[name="phone"] {
+    grid-column: 3 / 5;
+}
+
+.deliveryInfo form input[name="address"] {
+    grid-column: 1 / 3;
+}
+
+.deliveryInfo form input[name="city"] {
+    grid-column: 3 / 5;
+    text-transform: capitalize;
+}
+
+.deliveryInfo form input[name="country"] {
+    grid-column: 1 / 3;
+    text-transform: capitalize;
+}
+
+.deliveryInfo form input[name="zipCode"] {
+    grid-column: 3 / 5;
+}
+
+.deliveryInfo form button {
+    grid-column: 2 / 4;
+    outline: none;
+    border: 0;
+    background-color: #000;
+    color: #fff;
+    font-family: 'League Spartan Bold', sans-serif;
+    border-radius: 1em;
+    font-size: 0.8em;
+    cursor: pointer;
+}
+
+@media (max-width: 1800px) {
+    .deliveryInfo form {
+        width: 31vw;
+    }
+}
+
+@media (max-width: 1500px) {
+    .deliveryInfo form {
+        width: 34vw;
+    }
+}
+
+@media (max-width: 1300px) {
+    .deliveryInfo form {
+        width: 37vw;
+    }
+}
+
+@media (max-width: 1150px) {
+    .deliveryInfo form {
+        width: 42vw;
+    }
+}
+
+@media (max-width: 960px) {
+    .deliveryInfo form {
+        width: 50vw;
+    }
+}
+
+@media (max-width: 850px) {
+    .deliveryInfo form {
+        width: 56vw;
+    }
+}
+
+@media (max-width: 650px) {
+    .deliveryInfo form {
+        width: 62vw;
+    }
+}
+
+@media (max-width: 500px) {
+    .deliveryInfo {
+        font-size: 0.8em;
+    }
+
+    .deliveryInfo form {
+        width: 78vw;
+    }
+
+    .deliveryInfo form input {
+        padding: 0.6em;
+    }
+}
+
+@media (max-width: 450px) {
+    .deliveryInfo {
+        font-size: 0.7em;
+    }
+}
+
+@media (max-width: 350px) {
+    .deliveryInfo {
+        font-size: 0.65em;
+    }
+}
