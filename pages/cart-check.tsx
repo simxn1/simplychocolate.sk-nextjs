@@ -17,7 +17,9 @@ const CartCheck: NextPage = () => {
     isCartEmpty,
   } = useCartContext();
 
-  const handleContinue = () => {};
+  const handleContinue = () => {
+    router.push("/delivery-info");
+  };
 
   useEffect(() => {
     if (isCartEmpty) {
