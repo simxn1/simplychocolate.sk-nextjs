@@ -12,7 +12,12 @@ import {
 import { chocolateBoxes } from "data/chocolate-boxes";
 import { chocolateBars, Size } from "data/chocolate-bars";
 import { calculateTotalPrice, setAndSaveToLocalStorage } from "lib/utils";
-import { CartContextLocalStorageKeys, DeliveryInfoForm } from "lib/globalTypes";
+import {
+  CartContextLocalStorageKeys,
+  DeliveryInfoForm,
+  PaymentMethod,
+  ShippingMethod,
+} from "lib/globalTypes";
 
 interface ICartContext {
   chocolateBoxesQuantity?: number[];
@@ -26,6 +31,12 @@ interface ICartContext {
   isCartEmpty?: boolean;
   deliveryInfo?: DeliveryInfoForm | null;
   setDeliveryInfo?: Dispatch<SetStateAction<DeliveryInfoForm | null>>;
+  orderId?: string | null;
+  setOrderId?: Dispatch<SetStateAction<string | null>>;
+  paymentMethod?: PaymentMethod | null;
+  setPaymentMethod?: Dispatch<SetStateAction<PaymentMethod | null>>;
+  shippingMethod?: ShippingMethod | null;
+  setShippingMethod?: Dispatch<SetStateAction<ShippingMethod | null>>;
 }
 
 const CartContext = createContext<ICartContext>({});
@@ -49,6 +60,16 @@ export const CartContextWrapper: FC<Props> = ({ children }: Props) => {
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
   const [deliveryInfo, setDeliveryInfo] = useState<DeliveryInfoForm | null>(
+    null
+  );
+
+  const [orderId, setOrderId] = useState<string | null>(null);
+
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(
+    null
+  );
+
+  const [shippingMethod, setShippingMethod] = useState<ShippingMethod | null>(
     null
   );
 
@@ -88,6 +109,12 @@ export const CartContextWrapper: FC<Props> = ({ children }: Props) => {
     setTotalPrice,
     deliveryInfo,
     setDeliveryInfo,
+    orderId,
+    setOrderId,
+    paymentMethod,
+    setPaymentMethod,
+    shippingMethod,
+    setShippingMethod,
     isCartEmpty,
   };
 
