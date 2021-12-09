@@ -1,0 +1,50 @@
+.paid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 3%;
+}
+
+.paid h1, .paid h2 {
+    font-family: "League Spartan Bold", sans-serif;
+    text-align: center;
+}
+
+.paid h2 {
+    font-size: 1.25em;
+}
+
+.paid a {
+    display: block;
+    font-family: "Social Gothic Demi-Bold", sans-serif;
+    text-transform: uppercase;
+    font-size: 2.5em;
+    margin-top: 10%;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+    text-align: center;
+}
+
+.paid a:hover {
+    transform: scale(0.9);
+    opacity: 0.55;
+}
+
+@media (max-height: 950px) {
+    .paid {
+        margin-top: 10%;
+    }
+}
+
+@media (max-height: 850px) {
+    .paid {
+        margin-top: 20%;
+    }
+}
+
+@media (max-width: 400px) {
+    .paid {
+        font-size: 0.85em;
+    }
+}
