@@ -53,3 +53,42 @@ export enum ShippingMethod {
   PickUpAtStore = "pickUpAtStore",
   DeliveryPoint = "deliveryPoint",
 }
+
+export interface IOrder {
+  createdAt: Date;
+  completedAt: Date;
+  completionStatus: boolean;
+  paymentStatus: string;
+  paymentId: string | number;
+  orderDetails: OrderDetails;
+}
+
+export interface OrderDetails {
+  boxContent: BoxContent;
+  totalBoxQuantity: 6 | 12 | 24 | 30;
+  secondBoxContent: number[];
+  billingInfo: DeliveryInfoForm;
+  deliveryInfo: {
+    firstName: string;
+    lastName: string;
+    address: string;
+    city: string;
+    zipCode: string;
+  };
+  orderNumber: string;
+  discountCode: string;
+  afterDiscount: boolean;
+  shippingMethod: ShippingMethod;
+  paymentMethod: PaymentMethod;
+  price: number;
+  placeSelectedID: string;
+}
+
+export interface BoxContent {
+  grainyBilly: number;
+  crispyCarrie: number;
+  grainySue: number;
+  fitFiona: number;
+  richArnold: number;
+  speedyTom: number;
+}
