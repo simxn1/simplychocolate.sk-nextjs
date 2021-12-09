@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 import { SMTP_HOST, SMTP_PORT } from "lib/constants";
 import { BoxContent, DeliveryInfoForm, OrderDetails } from "lib/globalTypes";
-import { camelCaseToSentenceCase, formatPrice } from "./api-utils";
+import { camelCaseToSentenceCase, formatPrice } from "lib/utils";
 import { shippingMethods } from "data/payment-info";
 
 export const mailToCustomer = async (orderDetails: OrderDetails) => {

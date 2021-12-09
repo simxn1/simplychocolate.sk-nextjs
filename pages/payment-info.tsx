@@ -15,6 +15,8 @@ import { useCartContext } from "context/CartContext";
 import { paymentMethods, shippingMethods } from "data/payment-info";
 import styles from "styles/modules/PaymentInfo.module.css";
 import { useRouter } from "next/router";
+import { calculatePriceAfterDiscount } from "lib/utils";
+import { DISCOUNT_PERCENT } from "lib/constants";
 
 const PaymentInfo: NextPage = () => {
   const router = useRouter();
@@ -24,20 +26,23 @@ const PaymentInfo: NextPage = () => {
     orderId,
     paymentMethod,
     shippingMethod,
+    isDiscountApplied,
+    discountCode,
     setTotalPrice,
     setOrderId,
     setPaymentMethod,
     setShippingMethod,
+    setDeliveryPointPlaceId,
+    setIsDiscountApplied,
+    setDiscountCode,
   } = useCartContext();
 
   const [isCodeErrVisible, setIsCodeErrVisible] = useState<boolean>(false);
-  const [isDiscountApplied, setIsDiscountApplied] = useState<boolean>(false);
-  const [discountCode, setDiscountCode] = useState<string>("");
   const [isSelectedPlaceErrVisible, setIsSelectedPlaceErrVisible] =
     useState<boolean>(false);
 
   const handleChangeDiscountCode = (event: ChangeEvent<HTMLInputElement>) => {
-    setDiscountCode(event.target.value);
+    setDiscountCode && setDiscountCode(event.target.value);
   };
 
   const handleApplyDiscountCode = useCallback(async () => {
@@ -46,13 +51,10 @@ const PaymentInfo: NextPage = () => {
       await res.json();
 
     const discountCodeValid = discountCodes.find(
-      (code: DiscountCode) => code.name === discountCode.toUpperCase()
+      (code: DiscountCode) => code.name === discountCode?.toUpperCase()
     );
 
     if (!isDiscountApplied && discountCodeValid) {
-      let discountPercent = parseInt(discountCode.replace(/\D/g, ""));
-      let pricePercentAfterDiscount = 100 - discountPercent;
-
       const paymentPrice =
         paymentMethods.find(
           (thisPaymentMethod) => thisPaymentMethod.name === paymentMethod
@@ -64,8 +66,10 @@ const PaymentInfo: NextPage = () => {
         )?.price ?? 0;
 
       const newTotalPrice =
-        (((totalPrice ?? 0) - paymentPrice - shippingPrice) / 100) *
-          pricePercentAfterDiscount +
+        calculatePriceAfterDiscount(
+          (totalPrice ?? 0) - paymentPrice - shippingPrice,
+          DISCOUNT_PERCENT
+        ) +
         paymentPrice +
         shippingPrice;
 
@@ -75,7 +79,7 @@ const PaymentInfo: NextPage = () => {
         CartContextLocalStorageKeys.TotalPrice
       );
 
-      setIsDiscountApplied(true);
+      setIsDiscountApplied && setIsDiscountApplied(true);
       setIsCodeErrVisible(false);
     } else if (
       discountCode !== "" &&
@@ -88,6 +92,7 @@ const PaymentInfo: NextPage = () => {
     discountCode,
     isDiscountApplied,
     paymentMethod,
+    setIsDiscountApplied,
     setTotalPrice,
     shippingMethod,
     totalPrice,
@@ -95,7 +100,7 @@ const PaymentInfo: NextPage = () => {
 
   const checkSelectedPlaceForDeliveryPoint =
     useCallback(async (): Promise<boolean> => {
-      if (shippingMethod === "deliveryPoint") {
+      if (shippingMethod === ShippingMethod.DeliveryPoint) {
         const response = await fetch("/api/check-selected-place", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -105,13 +110,14 @@ const PaymentInfo: NextPage = () => {
         const data = await response.json();
 
         if (data.is_selected === 1) {
+          setDeliveryPointPlaceId && setDeliveryPointPlaceId(data.id);
           return true;
         } else {
           setIsSelectedPlaceErrVisible(true);
           return false;
         }
       } else return true;
-    }, [orderId, shippingMethod]);
+    }, [orderId, setDeliveryPointPlaceId, shippingMethod]);
 
   const handleSetPayment = useCallback(
     (newPaymentMethod: PaymentMethod) => {
@@ -238,6 +244,7 @@ const PaymentInfo: NextPage = () => {
                     className={styles.depoIntegration}
                     src={`https://admin.depo.sk/eshop?c=223&o=${orderId}`}
                     frameBorder="0"
+                    key={thisShippingMethod.name}
                   />
                 )}
             </>
