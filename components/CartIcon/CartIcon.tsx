@@ -10,7 +10,7 @@ export const CartIcon: FC<Props> = ({}: Props) => {
   const router = useRouter();
 
   const handleGoToCart = () => {
-    router.push("/mixed-box");
+    router.push("/mix");
   };
 
   return (
