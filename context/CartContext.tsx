@@ -4,6 +4,7 @@ import {
   FC,
   ReactNode,
   SetStateAction,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -39,6 +40,13 @@ interface ICartContext {
   setPaymentMethod?: Dispatch<SetStateAction<PaymentMethod | null>>;
   shippingMethod?: ShippingMethod | null;
   setShippingMethod?: Dispatch<SetStateAction<ShippingMethod | null>>;
+  deliveryPointPlaceId?: string | null;
+  setDeliveryPointPlaceId?: Dispatch<SetStateAction<string | null>>;
+  isDiscountApplied?: boolean;
+  setIsDiscountApplied?: Dispatch<SetStateAction<boolean>>;
+  discountCode?: string | null;
+  setDiscountCode?: Dispatch<SetStateAction<string | null>>;
+  clear?: () => void;
 }
 
 const CartContext = createContext<ICartContext>({});
@@ -75,12 +83,36 @@ export const CartContextWrapper: FC<Props> = ({ children }: Props) => {
     null
   );
 
+  const [deliveryPointPlaceId, setDeliveryPointPlaceId] = useState<
+    string | null
+  >(null);
+
+  const [isDiscountApplied, setIsDiscountApplied] = useState<boolean>(false);
+
+  const [discountCode, setDiscountCode] = useState<string | null>(null);
+
   const isCartEmpty: boolean = useMemo(() => {
     return !(
       chocolateBarsQuantity.reduce((a, b) => a + b, 0) > 0 ||
       chocolateBoxesQuantity.reduce((a, b) => a + b, 0) > 0
     );
   }, [chocolateBarsQuantity, chocolateBoxesQuantity]);
+
+  const clear = useCallback(() => {
+    setChocolateBarsQuantity(chocolateBars.map(() => 0));
+    setChocolateBoxesQuantity(chocolateBoxes.map(() => 0));
+    setSelectedChocolateBarsBoxSize(null);
+    setTotalPrice(0.0);
+    setDeliveryInfo(null);
+    setOrderId(null);
+    setPaymentMethod(null);
+    setShippingMethod(null);
+    setDeliveryPointPlaceId(null);
+    setIsDiscountApplied(false);
+    setDiscountCode(null);
+
+    localStorage.clear();
+  }, []);
 
   useEffect(() => {
     const newTotalPrice = calculateTotalPrice(
@@ -100,6 +132,53 @@ export const CartContextWrapper: FC<Props> = ({ children }: Props) => {
     selectedChocolateBarsBoxSize,
   ]);
 
+  const toGetFromLocalStorage = [
+    {
+      key: CartContextLocalStorageKeys.ChocolateBarsQuantity,
+      setFunc: setChocolateBarsQuantity,
+      state: chocolateBarsQuantity,
+    },
+    {
+      key: CartContextLocalStorageKeys.SelectedChocolateBarsBoxSize,
+      setFunc: setSelectedChocolateBarsBoxSize,
+      state: selectedChocolateBarsBoxSize,
+    },
+    {
+      key: CartContextLocalStorageKeys.ChocolateBoxesQuantity,
+      setFunc: setChocolateBoxesQuantity,
+      state: chocolateBoxesQuantity,
+    },
+    {
+      key: CartContextLocalStorageKeys.TotalPrice,
+      setFunc: setTotalPrice,
+      state: totalPrice,
+    },
+  ];
+
+  useEffect(() => {
+    const lastUpdated = localStorage.getItem("lastUpdated")
+      ? parseInt(JSON.parse(localStorage.getItem("lastUpdated") ?? ""))
+      : false;
+    const day = 86400000;
+    const isNotOlderThanThreeDays = lastUpdated
+      ? Date.now() - lastUpdated < 3 * day
+      : false;
+
+    if (isNotOlderThanThreeDays) {
+      toGetFromLocalStorage.forEach((item) => {
+        const itemValueFromLocalStorage = localStorage.getItem(item.key);
+        if (itemValueFromLocalStorage) {
+          const valueDeserialized = JSON.parse(itemValueFromLocalStorage);
+          item.setFunc(valueDeserialized);
+        }
+      });
+    } else clear();
+  }, []);
+
+  useEffect(() => {
+    setChocolateBarsQuantity(chocolateBars.map(() => 0));
+  }, [selectedChocolateBarsBoxSize]);
+
   const shared: ICartContext = {
     chocolateBoxesQuantity,
     setChocolateBoxesQuantity,
@@ -117,7 +196,14 @@ export const CartContextWrapper: FC<Props> = ({ children }: Props) => {
     setPaymentMethod,
     shippingMethod,
     setShippingMethod,
+    deliveryPointPlaceId,
+    setDeliveryPointPlaceId,
+    isDiscountApplied,
+    setIsDiscountApplied,
+    discountCode,
+    setDiscountCode,
     isCartEmpty,
+    clear,
   };
 
   return <CartContext.Provider value={shared}>{children}</CartContext.Provider>;
