@@ -78,11 +78,9 @@ const Summary: NextPage = () => {
       body: JSON.stringify(checkoutData),
     });
 
-    console.log(JSON.stringify(checkoutData));
-
     clear && clear();
     const cashCheckoutResponse = await response.json();
-    console.log(cashCheckoutResponse);
+
     router.push(cashCheckoutResponse.url);
   };
 
@@ -99,8 +97,6 @@ const Summary: NextPage = () => {
     });
     const data = await res.json();
 
-    console.log("CHECKOUT ", checkoutData);
-
     const paymentData = {
       cid: process.env.NEXT_PUBLIC_BESTERON_CID,
       amnt: totalPrice ? stringifyPrice(totalPrice).replace(",", ".") : "",
@@ -111,8 +107,6 @@ const Summary: NextPage = () => {
       language: "sk",
       paymentmethod: PAYMENT_TYPE,
     };
-
-    console.log("PAYMENT ", paymentData);
 
     clear && clear();
     // @ts-ignore
@@ -168,7 +162,7 @@ const Summary: NextPage = () => {
         c.charset = "utf-8";
         c.async = false;
 
-        c.src = "https://client.besteron.com/inline/besteronInline.js";
+        c.src = "https://client.besteron.com/inline/besteronInlineVirtual.js";
         s?.parentNode?.insertBefore(c, s);
       })(document);
   }, []);
