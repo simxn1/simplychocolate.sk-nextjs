@@ -1,7 +1,13 @@
 import { Dispatch, SetStateAction } from "react";
-import { CartContextLocalStorageKeys, ProductType } from "lib/globalTypes";
+import {
+  CartContextLocalStorageKeys,
+  OrderDetails,
+  ProductType,
+} from "lib/globalTypes";
 import { BoxSize, boxSizes, chocolateBars, Size } from "data/chocolate-bars";
 import { chocolateBoxes } from "data/chocolate-boxes";
+import { CURRENCY, PAYMENT_TYPE } from "./constants";
+import crypto from "crypto";
 
 export function setAndSaveToLocalStorage<StateType>(
   newValue: StateType,
@@ -25,7 +31,7 @@ export const paramCaseToLowerCase = (string: string): string => {
 };
 
 export const stringifyPrice = (price: number): string => {
-  return (price / 100).toFixed(2).replace(".", ",");
+  return convertToTruePrice(price).toFixed(2).replace(".", ",");
 };
 
 export const getIndexOfProductByName = (
@@ -131,4 +137,124 @@ export const generateOrderId = (): string => {
     "-"
   );
   return orderId;
+};
+
+export const toCamelCase = (string: string): string =>
+  string.replace(/\s+(.)/g, (match: string, group: string) =>
+    group.toUpperCase()
+  );
+
+export const orderNumberStringToBesteronVs = (
+  orderNumberString: string
+): number => {
+  return parseInt(orderNumberString.replace(/-/g, "").substring(0, 9));
+};
+
+export const convertToTruePrice = (price: number): number => {
+  return price / 100;
+};
+
+export const sanitizeDiscountCode = (discountCode: string): string => {
+  return discountCode.toUpperCase().replace(/[0-9]/g, "");
+};
+
+export const chocolateBarBoxSize = {
+  6: "S",
+  12: "M",
+  24: "L",
+  30: "XL",
+};
+
+export const orderNumberStringToNumber = (
+  orderNumberString: string
+): number => {
+  return parseInt(orderNumberString.replace(/-/g, ""));
+};
+
+export const orderNumberStringToPaymentId = (
+  orderNumberString: string
+): number => {
+  return parseInt(orderNumberString.replace(/-/g, "").substring(0, 9));
+};
+
+export const camelCaseToSentenceCase = (camelCaseString: string): string => {
+  const result = camelCaseString.replace(/([A-Z])/g, " $1");
+  return result.charAt(0).toUpperCase() + result.slice(1);
+};
+
+export const reverseString = (string: string): string => {
+  return [...string].reverse().join("");
+};
+
+export const formatPrice = (price: any) => {
+  return reverseString(
+    reverseString(price.toString()).slice(0, 2) +
+      "," +
+      reverseString(price.toString()).slice(2)
+  );
+};
+
+export const getBesteronStringFromOrderDetails = (
+  orderDetails: OrderDetails
+) => {
+  const amount = convertToTruePrice(orderDetails.price).toFixed(2);
+  const vs = orderNumberStringToPaymentId(orderDetails.orderNumber);
+  const returnUrl = "https://simplychocolate.sk/paid";
+
+  return `${process.env.NEXT_PUBLIC_BESTERON_CID}${PAYMENT_TYPE}${amount}${CURRENCY}${vs}${returnUrl}`;
+};
+
+export const getBesteronStringFromPaymentDetails = (paymentDetails: {
+  TYPE: string;
+  AMNT: string | number;
+  VS: string | number;
+  RESULT: string;
+}) => {
+  const { TYPE, AMNT, VS, RESULT } = paymentDetails;
+
+  return `${process.env.NEXT_PUBLIC_BESTERON_CID}${TYPE}${AMNT}${CURRENCY}${VS}${RESULT}`;
+};
+
+export const signBesteronString = (rawString: string) => {
+  const step2 = crypto.createHash("sha1").update(rawString).digest("hex");
+  const key = process.env.BESTERON_KEY ?? "";
+
+  const keyBuffer = Buffer.from(key, "hex");
+  const dataBuffer = Buffer.from(step2.substring(0, 32), "hex");
+
+  const cipher = crypto.createCipheriv("aes-256-ecb", keyBuffer, "");
+  cipher.setAutoPadding(false);
+
+  const step3 = cipher.update(dataBuffer);
+
+  const sign = step3.toString("hex").toUpperCase();
+
+  return sign;
+};
+
+export const calculatePriceAfterDiscount = (
+  priceBefore: number,
+  discountPercent: number
+): number => {
+  return (priceBefore / 100) * (100 - discountPercent);
+};
+
+export const calculatePriceBeforeDiscount = (
+  priceAfter: number,
+  discountPercent: number
+): number => {
+  const toSubstractFromOne = discountPercent / 100;
+  return priceAfter / (1 - toSubstractFromOne);
+};
+
+export const calculateDiscountValueForPrice = (
+  priceBefore: number,
+  discountPercent: number
+): number => {
+  const priceAfter = calculatePriceAfterDiscount(priceBefore, discountPercent);
+  return priceBefore - priceAfter;
+};
+
+export const removeVat = (price: number): number => {
+  return price / 1.2;
 };
