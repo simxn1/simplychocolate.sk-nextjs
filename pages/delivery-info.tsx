@@ -6,16 +6,23 @@ import { DeliveryInfoForm } from "lib/globalTypes";
 import { useCartContext } from "context/CartContext";
 import { useRouter } from "next/router";
 import { inputs } from "data/delivery";
+import { useEffect } from "react";
 
 const DeliveryInfo: NextPage = () => {
   const router = useRouter();
   const { register, handleSubmit } = useForm();
-  const { setDeliveryInfo } = useCartContext();
+  const { setDeliveryInfo, isCartEmpty } = useCartContext();
 
   const continueCheckout = (data: DeliveryInfoForm) => {
     setDeliveryInfo && setDeliveryInfo(data);
     router.push("/payment-info");
   };
+
+  useEffect(() => {
+    if (isCartEmpty) {
+      router.push("/");
+    }
+  }, []);
 
   return (
     <div className={styles.deliveryInfo}>
