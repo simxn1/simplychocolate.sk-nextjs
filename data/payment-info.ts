@@ -1,6 +1,6 @@
 import { PaymentMethod, ShippingMethod } from "lib/globalTypes";
 
-type Method<Type> = {
+export type Method<Type> = {
   name: Type;
   price: number;
   label: string;
