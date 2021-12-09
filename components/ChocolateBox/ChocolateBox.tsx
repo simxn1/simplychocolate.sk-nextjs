@@ -6,7 +6,8 @@ import { ChocolateBoxCart } from "components/ChocolateBoxCart";
 import { isMobileOnly } from "react-device-detect";
 import { ProductNutrition } from "components/ProductNutrition";
 import { ProductNutritionButton } from "components/ProductNutritionButton";
-import { stringifyPrice, titleCaseToParamCase } from "lib/utils";
+import {convertToTruePrice, stringifyPrice, titleCaseToParamCase} from "lib/utils";
+import { useRouter } from "next/router";
 
 interface ChocolateBoxProps {
   chocolateBox: IChocolateBox;
@@ -15,6 +16,8 @@ interface ChocolateBoxProps {
 export const ChocolateBox: FC<ChocolateBoxProps> = ({
   chocolateBox,
 }: ChocolateBoxProps) => {
+  const router = useRouter();
+
   const {
     name,
     firstLine,
@@ -39,9 +42,13 @@ export const ChocolateBox: FC<ChocolateBoxProps> = ({
     setIsNutritionOpen((prevState) => !prevState);
   };
 
-  const handleContinue = () => {};
+  const handleContinue = () => {
+    router.push("/mix");
+  };
 
-  const handleCheckout = () => {};
+  const handleCheckout = () => {
+    router.push("/cart-check");
+  };
 
   const device = isMobileOnly ? "mobile" : "desktop";
 
@@ -94,7 +101,7 @@ export const ChocolateBox: FC<ChocolateBoxProps> = ({
                     }}
                     className="new-price"
                   >
-                    {price / 100 / 2} €
+                    {stringifyPrice(convertToTruePrice(price) / 2)} €
                   </strong>
                 )}
               </>
