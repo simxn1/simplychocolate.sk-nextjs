@@ -3,12 +3,38 @@ import { useEffect, useRef, useState } from "react";
 import { inputs } from "data/delivery";
 import styles from "styles/modules/Summary.module.css";
 import { useCartContext } from "context/CartContext";
-import { DeliveryInfoForm } from "lib/globalTypes";
+import { DeliveryInfoForm, PaymentMethod } from "lib/globalTypes";
+import { chocolateBars } from "data/chocolate-bars";
+import {
+  orderNumberStringToBesteronVs,
+  sanitizeDiscountCode,
+  stringifyPrice,
+  toCamelCase,
+} from "lib/utils";
+import { CURRENCY, PAYMENT_TYPE } from "lib/constants";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Summary: NextPage = () => {
+  const router = useRouter();
+
   const besteronElem = useRef(null);
 
-  const { paymentMethod, deliveryInfo, setDeliveryInfo } = useCartContext();
+  const {
+    chocolateBarsQuantity,
+    chocolateBoxesQuantity,
+    totalPrice,
+    paymentMethod,
+    shippingMethod,
+    deliveryInfo,
+    isDiscountApplied,
+    discountCode,
+    setDeliveryInfo,
+    deliveryPointPlaceId,
+    orderId,
+    clear,
+    isCartEmpty,
+  } = useCartContext();
 
   const [termsAgreed, setTermsAgreed] = useState<boolean>(true);
   const [isBesteronCheckout, setIsBesteronCheckout] = useState<boolean>(false);
@@ -17,13 +43,85 @@ const Summary: NextPage = () => {
     setTermsAgreed((prevState) => !prevState);
   };
 
-  const handleCashCheckout = () => {};
+  let boxContent: Record<string, number> = {};
+  if (chocolateBarsQuantity) {
+    chocolateBars.forEach(
+      (bar, index) =>
+        (boxContent[toCamelCase(bar.name)] = chocolateBarsQuantity[index])
+    );
+  }
 
-  const handleOnlinePayment = () => {};
+  const paymentId = orderNumberStringToBesteronVs(orderId ?? "");
+  const checkoutData = {
+    boxContent,
+    totalBoxQuantity: chocolateBarsQuantity?.reduce((a, b) => a + b, 0),
+    secondBoxContent: chocolateBoxesQuantity,
+    price: totalPrice,
+    billingInfo: deliveryInfo,
+    deliveryInfo,
+    paymentMethod,
+    shippingMethod,
+    afterDiscount: isDiscountApplied,
+    orderNumber: orderId,
+    discountCode: sanitizeDiscountCode(discountCode ?? ""),
+    placeSelectedID: deliveryPointPlaceId,
+    paymentId,
+  };
+
+  const handleCashCheckout = async () => {
+    const response = await fetch("/api/checkout-cash", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(checkoutData),
+    });
+
+    console.log(JSON.stringify(checkoutData));
+
+    clear && clear();
+    const cashCheckoutResponse = await response.json();
+    console.log(cashCheckoutResponse);
+    router.push(cashCheckoutResponse.url);
+  };
+
+  const handleOnlinePayment = async () => {
+    setIsBesteronCheckout(true);
+
+    const res = await fetch("/api/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(checkoutData),
+    });
+    const data = await res.json();
+
+    console.log("CHECKOUT ", checkoutData);
+
+    const paymentData = {
+      cid: process.env.NEXT_PUBLIC_BESTERON_CID,
+      amnt: totalPrice ? stringifyPrice(totalPrice).replace(",", ".") : "",
+      vs: paymentId,
+      curr: CURRENCY,
+      ru: "https://simplychocolate.sk" + "/paid",
+      sign: data.signed,
+      language: "sk",
+      paymentmethod: PAYMENT_TYPE,
+    };
+
+    console.log("PAYMENT ", paymentData);
+
+    clear && clear();
+    // @ts-ignore
+    window.Besteron.show(document, besteronElem.current, paymentData);
+  };
 
   const handleContinue = () => {
     if (termsAgreed) {
-      return paymentMethod === "cash"
+      return paymentMethod === PaymentMethod.Cash
         ? handleCashCheckout()
         : handleOnlinePayment();
     }
@@ -44,6 +142,12 @@ const Summary: NextPage = () => {
         return null;
       });
   };
+
+  useEffect(() => {
+    if (isCartEmpty) {
+      router.push("/");
+    }
+  }, []);
 
   useEffect(() => {
     // @ts-ignore
@@ -103,11 +207,13 @@ const Summary: NextPage = () => {
           <input
             type="checkbox"
             checked={termsAgreed}
-            onClick={toggleTermsAgreed}
+            onChange={toggleTermsAgreed}
           />
           Súhlasím s
-          <a href="/pdf/vseobecne-obchodne-podmienky.pdf" target="_blank">
-            &nbsp;obchodnými podmienkami
+          <a>
+            <Link href="/pdf/vseobecne-obchodne-podmienky.pdf">
+              &nbsp;obchodnými podmienkami
+            </Link>
           </a>
         </label>
         <button
