@@ -15,7 +15,9 @@ export const createDeliveryPointPackage = async (
       "Content-Type": "application/json;charset=UTF-8",
       Authorization:
         "Basic " +
-        Buffer.from("info@origins.sk" + ":" + "Original1").toString("base64"),
+        Buffer.from(
+          process.env.DEPO_USER + ":" + process.env.DEPO_PASS
+        ).toString("base64"),
     },
     body: JSON.stringify({
       target: orderDetails.placeSelectedID,

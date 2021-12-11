@@ -85,10 +85,10 @@ export interface OrderDetails {
 }
 
 export interface BoxContent {
-  grainyBilly: number;
-  crispyCarrie: number;
-  grainySue: number;
-  fitFiona: number;
-  richArnold: number;
-  speedyTom: number;
+  grainyBilly?: number;
+  crispyCarrie?: number;
+  grainySue?: number;
+  fitFiona?: number;
+  richArnold?: number;
+  speedyTom?: number;
 }

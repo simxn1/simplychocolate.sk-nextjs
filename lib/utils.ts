@@ -6,7 +6,7 @@ import {
 } from "lib/globalTypes";
 import { BoxSize, boxSizes, chocolateBars, Size } from "data/chocolate-bars";
 import { chocolateBoxes } from "data/chocolate-boxes";
-import { CURRENCY, PAYMENT_TYPE } from "./constants";
+import { CURRENCY, PAYMENT_TYPE } from "lib/constants";
 import crypto from "crypto";
 
 export function setAndSaveToLocalStorage<StateType>(
@@ -165,6 +165,33 @@ export const chocolateBarBoxSize = {
   30: "XL",
 };
 
+export function getPaymentData(
+  totalPrice: number,
+  signed: string,
+  paymentId: number
+) {
+  console.log({
+    cid: process.env.NEXT_PUBLIC_BESTERON_CID,
+    amnt: totalPrice ? stringifyPrice(totalPrice).replace(",", ".") : "",
+    vs: paymentId,
+    curr: CURRENCY,
+    ru: process.env.NEXT_PUBLIC_ORIGIN + "/paid",
+    sign: signed,
+    language: "sk",
+    paymentmethod: PAYMENT_TYPE,
+  });
+  return {
+    cid: process.env.NEXT_PUBLIC_BESTERON_CID,
+    amnt: totalPrice ? stringifyPrice(totalPrice).replace(",", ".") : "",
+    vs: paymentId,
+    curr: CURRENCY,
+    ru: process.env.NEXT_PUBLIC_ORIGIN + "/paid",
+    sign: signed,
+    language: "sk",
+    paymentmethod: PAYMENT_TYPE,
+  };
+}
+
 export const orderNumberStringToNumber = (
   orderNumberString: string
 ): number => {
@@ -199,7 +226,7 @@ export const getBesteronStringFromOrderDetails = (
 ) => {
   const amount = convertToTruePrice(orderDetails.price).toFixed(2);
   const vs = orderNumberStringToPaymentId(orderDetails.orderNumber);
-  const returnUrl = "https://simplychocolate.sk/paid";
+  const returnUrl = process.env.NEXT_PUBLIC_ORIGIN + "/paid";
 
   return `${process.env.NEXT_PUBLIC_BESTERON_CID}${PAYMENT_TYPE}${amount}${CURRENCY}${vs}${returnUrl}`;
 };
