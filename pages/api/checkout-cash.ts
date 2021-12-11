@@ -40,6 +40,6 @@ export default async function (
       await createDeliveryPointPackage(orderDetails);
     }
 
-    res.json({ url: "/paid" });
+    res.json({ url: "/paid?ISCASH=true" });
   }
 }

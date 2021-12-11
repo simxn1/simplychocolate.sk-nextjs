@@ -6,14 +6,14 @@ import { useCartContext } from "context/CartContext";
 import { DeliveryInfoForm, PaymentMethod } from "lib/globalTypes";
 import { chocolateBars } from "data/chocolate-bars";
 import {
+  getPaymentData,
   orderNumberStringToBesteronVs,
   sanitizeDiscountCode,
-  stringifyPrice,
   toCamelCase,
 } from "lib/utils";
-import { CURRENCY, PAYMENT_TYPE } from "lib/constants";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { CheckoutData, fetchCashCheckout, fetchOnlineCheckout } from "lib/api";
 
 const Summary: NextPage = () => {
   const router = useRouter();
@@ -52,65 +52,42 @@ const Summary: NextPage = () => {
   }
 
   const paymentId = orderNumberStringToBesteronVs(orderId ?? "");
-  const checkoutData = {
+  const checkoutData: CheckoutData = {
     boxContent,
     totalBoxQuantity: chocolateBarsQuantity?.reduce((a, b) => a + b, 0),
     secondBoxContent: chocolateBoxesQuantity,
     price: totalPrice,
-    billingInfo: deliveryInfo,
-    deliveryInfo,
-    paymentMethod,
-    shippingMethod,
+    billingInfo: deliveryInfo || undefined,
+    deliveryInfo: deliveryInfo || undefined,
+    paymentMethod: paymentMethod || undefined,
+    shippingMethod: shippingMethod || undefined,
     afterDiscount: isDiscountApplied,
-    orderNumber: orderId,
+    orderNumber: orderId || undefined,
     discountCode: sanitizeDiscountCode(discountCode ?? ""),
-    placeSelectedID: deliveryPointPlaceId,
+    placeSelectedID: deliveryPointPlaceId || undefined,
     paymentId,
   };
 
   const handleCashCheckout = async () => {
-    const response = await fetch("/api/checkout-cash", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(checkoutData),
-    });
+    const url = await fetchCashCheckout(checkoutData);
 
     clear && clear();
-    const cashCheckoutResponse = await response.json();
 
-    router.push(cashCheckoutResponse.url);
+    router.push(url);
   };
 
   const handleOnlinePayment = async () => {
     setIsBesteronCheckout(true);
 
-    const res = await fetch("/api/checkout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(checkoutData),
-    });
-    const data = await res.json();
+    const signed = await fetchOnlineCheckout(checkoutData);
 
-    const paymentData = {
-      cid: process.env.NEXT_PUBLIC_BESTERON_CID,
-      amnt: totalPrice ? stringifyPrice(totalPrice).replace(",", ".") : "",
-      vs: paymentId,
-      curr: CURRENCY,
-      ru: "https://simplychocolate.sk" + "/paid",
-      sign: data.signed,
-      language: "sk",
-      paymentmethod: PAYMENT_TYPE,
-    };
+    if (totalPrice) {
+      const paymentData = getPaymentData(totalPrice, signed, paymentId);
 
-    clear && clear();
-    // @ts-ignore
-    window.Besteron.show(document, besteronElem.current, paymentData);
+      clear && clear();
+      // @ts-ignore
+      window.Besteron.show(document, besteronElem.current, paymentData);
+    }
   };
 
   const handleContinue = () => {

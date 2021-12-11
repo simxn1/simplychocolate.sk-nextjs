@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import {
+  calculatePriceAfterDiscount,
   generateOrderId,
   setAndSaveToLocalStorage,
   stringifyPrice,
@@ -15,8 +16,8 @@ import { useCartContext } from "context/CartContext";
 import { paymentMethods, shippingMethods } from "data/payment-info";
 import styles from "styles/modules/PaymentInfo.module.css";
 import { useRouter } from "next/router";
-import { calculatePriceAfterDiscount } from "lib/utils";
 import { DISCOUNT_PERCENT } from "lib/constants";
+import { checkDeliveryPointSelectedPlace, getDiscountCodes } from "lib/api";
 
 const PaymentInfo: NextPage = () => {
   const router = useRouter();
@@ -46,9 +47,7 @@ const PaymentInfo: NextPage = () => {
   };
 
   const handleApplyDiscountCode = useCallback(async () => {
-    const res = await fetch("/api/discount-codes", { method: "GET" });
-    const { discountCodes }: { discountCodes: DiscountCode[] } =
-      await res.json();
+    const discountCodes = await getDiscountCodes();
 
     const discountCodeValid = discountCodes.find(
       (code: DiscountCode) => code.name === discountCode?.toUpperCase()
@@ -101,16 +100,12 @@ const PaymentInfo: NextPage = () => {
   const checkSelectedPlaceForDeliveryPoint =
     useCallback(async (): Promise<boolean> => {
       if (shippingMethod === ShippingMethod.DeliveryPoint) {
-        const response = await fetch("/api/check-selected-place", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ order_id: orderId }),
-        });
+        const { is_selected, id } = await checkDeliveryPointSelectedPlace(
+          orderId ?? ""
+        );
 
-        const data = await response.json();
-
-        if (data.is_selected === 1) {
-          setDeliveryPointPlaceId && setDeliveryPointPlaceId(data.id);
+        if (is_selected && id) {
+          setDeliveryPointPlaceId && setDeliveryPointPlaceId(id);
           return true;
         } else {
           setIsSelectedPlaceErrVisible(true);
@@ -244,7 +239,7 @@ const PaymentInfo: NextPage = () => {
                     className={styles.depoIntegration}
                     src={`https://admin.depo.sk/eshop?c=223&o=${orderId}`}
                     frameBorder="0"
-                    key={thisShippingMethod.name}
+                    key={thisShippingMethod.name + "iframe"}
                   />
                 )}
             </>
