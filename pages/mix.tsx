@@ -11,7 +11,7 @@ import {
   stringifyPrice,
 } from "lib/utils";
 import { CartContextLocalStorageKeys } from "lib/globalTypes";
-import { Back } from "components/Back";
+import { Back } from "components";
 
 const Mix: NextPage = () => {
   const router = useRouter();

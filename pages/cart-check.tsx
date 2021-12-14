@@ -4,7 +4,7 @@ import { chocolateBoxes } from "data/chocolate-boxes";
 import { capitalize, stringifyPrice } from "lib/utils";
 import { useCartContext } from "context/CartContext";
 import styles from "styles/modules/CartCheck.module.css";
-import { Back } from "components/Back";
+import { Back } from "components";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 

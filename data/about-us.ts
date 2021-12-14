@@ -1,4 +1,4 @@
-import { AboutUsSectionProps } from "components/AboutUsSection/AboutUsSection";
+import { AboutUsSectionProps } from "components";
 
 export const aboutUsSections: Array<AboutUsSectionProps> = [
   {

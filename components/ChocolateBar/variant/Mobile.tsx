@@ -1,6 +1,5 @@
 import { FC } from "react";
-import { ChocolateBarVariantProps } from "components/ChocolateBar";
-import { ProductNutritionButton } from "components/ProductNutritionButton";
+import { ProductNutritionButton, ChocolateBarVariantProps } from "components";
 import styles from "styles/modules/ChocolateBar/ChocolateBarMobile.module.css";
 
 export const Mobile: FC<ChocolateBarVariantProps> = ({

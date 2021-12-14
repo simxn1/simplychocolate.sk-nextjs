@@ -1,10 +1,12 @@
 import { FC, Fragment, useState } from "react";
 import Typical from "react-typical";
 import ReactCompareImage from "react-compare-image";
-import { ProductNutritionButton } from "components/ProductNutritionButton";
-import { CompareImgHint } from "components/CompareImgHint";
+import {
+  ProductNutritionButton,
+  CompareImgHint,
+  ChocolateBarVariantProps,
+} from "components";
 import styles from "styles/modules/ChocolateBar/ChocolateBarDesktop.module.css";
-import { ChocolateBarVariantProps } from "components/ChocolateBar";
 
 export const Desktop: FC<ChocolateBarVariantProps> = ({
   chocolateBar,

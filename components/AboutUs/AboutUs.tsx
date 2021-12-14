@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Carousel } from "react-responsive-carousel";
 import { aboutUsSections } from "data/about-us";
-import { AboutUsSection } from "components/AboutUsSection";
+import { AboutUsSection } from "components";
 import styles from "styles/modules/AboutUs.module.css";
 
 interface AboutUsProps {}

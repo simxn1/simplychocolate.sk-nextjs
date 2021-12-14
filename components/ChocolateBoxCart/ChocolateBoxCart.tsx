@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styles from "styles/modules/ChocolateBoxes.module.css";
-import { ChocolateBoxCount } from "components/ChocolateBoxCount";
+import { ChocolateBoxCount } from "components";
 
 interface Props {
   toggleIsCartOpen: () => void;

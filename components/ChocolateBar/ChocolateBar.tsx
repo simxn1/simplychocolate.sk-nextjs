@@ -8,8 +8,7 @@ import {
 import { Mobile } from "./variant/Mobile";
 import { useCartContext } from "context/CartContext";
 import { setAndSaveToLocalStorage } from "lib/utils";
-import { ChocolateBarCart } from "components/ChocolateBarCart";
-import { ProductNutrition } from "components/ProductNutrition";
+import { ChocolateBarCart, ProductNutrition } from "components";
 import { isMobileOnly } from "react-device-detect";
 import { Desktop } from "./variant/Desktop";
 import { CartContextLocalStorageKeys } from "lib/globalTypes";

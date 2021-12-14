@@ -1,13 +1,15 @@
 import type { NextPage } from "next";
-import { Menu } from "components/Menu";
-import { CartIcon } from "components/CartIcon";
-import { Intro } from "components/Intro";
-import { Container } from "components/Container";
-import { WhereToFindUs } from "components/WhereToFindUs";
-import { AboutUs } from "components/AboutUs";
-import { ChocolateBoxes } from "components/ChocolateBoxes";
-import { ChocolateBars } from "components/ChocolateBars";
-import { Contact } from "components/Contact";
+import {
+  AboutUs,
+  CartIcon,
+  ChocolateBars,
+  ChocolateBoxes,
+  Contact,
+  Container,
+  Intro,
+  Menu,
+  WhereToFindUs,
+} from "components";
 
 const Home: NextPage = () => {
   return (

@@ -1,10 +1,9 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { ChocolateBoxCount } from "components/ChocolateBoxCount";
+import { ChocolateBoxCount, Back } from "components";
 import { chocolateBoxes } from "data/chocolate-boxes";
 import { useState } from "react";
 import styles from "styles/modules/ChocolateBoxPage.module.css";
-import { Back } from "components/Back";
 import { useCartContext } from "context/CartContext";
 
 const ChocolateBoxPage: NextPage = () => {

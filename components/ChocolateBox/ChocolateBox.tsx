@@ -2,11 +2,17 @@ import { FC, useState } from "react";
 import Typical from "react-typical";
 import styles from "styles/modules/ChocolateBoxes.module.css";
 import { IChocolateBox } from "data/chocolate-boxes";
-import { ChocolateBoxCart } from "components/ChocolateBoxCart";
+import {
+  ChocolateBoxCart,
+  ProductNutrition,
+  ProductNutritionButton,
+} from "components";
 import { isMobileOnly } from "react-device-detect";
-import { ProductNutrition } from "components/ProductNutrition";
-import { ProductNutritionButton } from "components/ProductNutritionButton";
-import {convertToTruePrice, stringifyPrice, titleCaseToParamCase} from "lib/utils";
+import {
+  convertToTruePrice,
+  stringifyPrice,
+  titleCaseToParamCase,
+} from "lib/utils";
 import { useRouter } from "next/router";
 
 interface ChocolateBoxProps {

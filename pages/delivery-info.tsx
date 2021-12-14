@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { Back } from "components/Back";
+import { Back } from "components";
 import { useForm } from "react-hook-form";
 import styles from "styles/modules/DeliveryInfo.module.css";
 import { DeliveryInfoForm } from "lib/globalTypes";

@@ -1,5 +1,5 @@
 import React, { Dispatch, FC, ReactNode, SetStateAction } from "react";
-import { SlideSelectors } from "components/SlideSelectors";
+import { SlideSelectors } from "components";
 
 interface IntroSectionProps {
   currentSlide: number;

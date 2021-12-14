@@ -1,8 +1,7 @@
 import { FC, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
-import { CustomCarouselNav } from "components/CustomCarouselNav";
+import { CustomCarouselNav, ChocolateBar } from "components";
 import { chocolateBars } from "data/chocolate-bars";
-import { ChocolateBar } from "components/ChocolateBar";
 import { SectionId } from "lib/globalTypes";
 import { isMobileOnly } from "react-device-detect";
 import { useRouter } from "next/router";
